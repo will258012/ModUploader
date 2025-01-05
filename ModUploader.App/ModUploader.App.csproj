@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{1C6C602F-B493-41B5-8D10-B66B64944F92}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9-windows</TargetFramework>
+	<Platforms>x64</Platforms>
+	<PlatformIdentifier>win-x64</PlatformIdentifier>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+	<LangVersion>latest</LangVersion>
+	<PublishSingleFile>True</PublishSingleFile>
+	<SelfContained>False</SelfContained>
+	<SignAssembly>True</SignAssembly>
+	<StartupObject>ModUploader.Program</StartupObject>
+	<ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+	<ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+    <None Remove="Resources\PreviewImage.png" />
+  </ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Resources\Icon.ico" />
+	</ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="costura_win_x64\steam_api64.dll" />
+    <EmbeddedResource Include="Resources\PreviewImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+	<PackageReference Include="Fody" Version="6.9.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+	<PackageReference Include="Costura.Fody" Version="6.0.0">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>compile; runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+    <PackageReference Include="NLog" Version="5.3.4" />
+    <PackageReference Include="ShellProgressBar" Version="5.2.0" />
+    <PackageReference Include="Steamworks.NET" Version="2024.8.0" />
+    <PackageReference Include="WindowsAPICodePack" Version="8.0.6" />
+  </ItemGroup>
+  <ItemGroup>
+	  <EmbeddedResource Update="Resources\Resource.EResult.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resource.EResult.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Resources.zh-cn.resx">
+	  </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="ModUploader.Resources.Resources">
+      <Static>True</Static>
+    </Using>
+    <Using Include="NLog" />
+    <Using Include="Steamworks" />
+    <Using Include="System.Reflection" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Resource.EResult.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource.EResult.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+	<Target Name="DeployToModDirectory" AfterTargets="Publish">
+		<Copy SourceFiles="$(PublishDir)\$(TargetName).exe" DestinationFiles="$(AppDeployDir)\$(RootNameSpace).exe" />
+		<Copy SourceFiles="NLog.config" DestinationFiles="$(AppDeployDir)\NLog.config" />
+	</Target>
+</Project>

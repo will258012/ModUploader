@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Command_Error" xml:space="preserve">
+    <value>Invalid or missing parameters.</value>
+  </data>
+  <data name="Command_Help" xml:space="preserve">
+    <value>Available arguments:
+"-help" Show this part
+"-update &lt;id&gt; &lt;content_path&gt;  [&lt;previewImage_path&gt; (Ignoring this item will not change the preview image)]" Update a mod
+"-newmod &lt;title&gt; &lt;content_path&gt; [&lt;previewImage_path&gt; (Ignore this will use default preview image)]" Create a new mod</value>
+  </data>
+  <data name="Main_Message" xml:space="preserve">
+    <value>Please enter your mod's workshop ID or URL to update your mod, or vaild operation:
+- 'mymod' show your mods in a list
+- 'newmod' create a new mod
+- 'exit' exit</value>
+  </data>
+  <data name="Main_CreateFail" xml:space="preserve">
+    <value>Failed to create mod:</value>
+  </data>
+  <data name="Main_InvalidInput" xml:space="preserve">
+    <value>Invalid input. Please try again.</value>
+  </data>
+  <data name="Main_MultiInstances" xml:space="preserve">
+    <value>App is already running.</value>
+  </data>
+  <data name="Main_NewMod_EnterDescription" xml:space="preserve">
+    <value>Please enter your new mod's description (optional):</value>
+  </data>
+  <data name="Main_NewMod_EnterTitle" xml:space="preserve">
+    <value>Please enter your new mod's title (cannot be empty):</value>
+  </data>
+  <data name="Main_UpdateFail" xml:space="preserve">
+    <value>Failed to update mod:</value>
+  </data>
+  <data name="Upload_ChooseContentFolder_Title" xml:space="preserve">
+    <value>Please choose your mod content folder</value>
+  </data>
+  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Newmod" xml:space="preserve">
+    <value>You canceled the selection. Will use the default image.</value>
+  </data>
+  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Update" xml:space="preserve">
+    <value>You canceled the selection. Will not change the image.</value>
+  </data>
+  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Title" xml:space="preserve">
+    <value>Please choose the preview image</value>
+  </data>
+  <data name="Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Newmod" xml:space="preserve">
+    <value>Do you want to provide a preview image?</value>
+  </data>
+  <data name="Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Update" xml:space="preserve">
+    <value>Do you want to update the preview image?</value>
+  </data>
+  <data name="Upload_ChoosePreviewImageFile_TaskDialog_Text_NewMod" xml:space="preserve">
+    <value>Click "Yes" to select the image, or click "No" to skip and use the default image.</value>
+  </data>
+  <data name="Upload_ChoosePreviewImageFile_TaskDialog_Text_Update" xml:space="preserve">
+    <value>Click "Yes" to select the image, or click "No" to skip without changing the image.</value>
+  </data>
+  <data name="Upload_CreateSuccess" xml:space="preserve">
+    <value>Workshop item {0} is successfully created.</value>
+  </data>
+  <data name="Upload_Creating" xml:space="preserve">
+    <value>Creating workshop item, please wait...</value>
+  </data>
+  <data name="Upload_GetModList_Fetching" xml:space="preserve">
+    <value>Fetching your mod list, please wait...</value>
+  </data>
+  <data name="Upload_GetModList_NoMod" xml:space="preserve">
+    <value>You don't seem to have any mods...</value>
+  </data>
+  <data name="Upload_Success" xml:space="preserve">
+    <value>Successfully upload! Opening workshop page for you...</value>
+  </data>
+  <data name="Upload_Uploading" xml:space="preserve">
+    <value>Uploading...</value>
+  </data>
+  <data name="Main_Update_Getinfo" xml:space="preserve">
+    <value>Getting mod info...</value>
+  </data>
+  <data name="Main_Update_WillUpdate" xml:space="preserve">
+    <value>Mod will update:</value>
+  </data>
+  <data name="Main_DirectoryNotFound" xml:space="preserve">
+    <value>Invalid content path or/and preview image path.</value>
+  </data>
+  <data name="ModInfo_QueryFailed" xml:space="preserve">
+    <value>Query Failed:</value>
+  </data>
+  <data name="ModInfo_NotCSL" xml:space="preserve">
+    <value>Item does not appear to be a Cities: Skylines workshop item:</value>
+  </data>
+  <data name="ModInfo_NotMod" xml:space="preserve">
+    <value>Item do not appear to be a mod:</value>
+  </data>
+  <data name="ModInfo_NotAuthor" xml:space="preserve">
+    <value>Item does not appear to yours:</value>
+  </data>
+  <data name="Upload_ChooseContentFolder_Cancel" xml:space="preserve">
+    <value>You canceled the selection.</value>
+  </data>
+</root>

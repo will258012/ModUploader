@@ -1,0 +1,17 @@
+<Project>
+	<PropertyGroup>
+		<Title>Mod Uploader</Title>
+		<RootNamespace>ModUploader</RootNamespace>
+		<GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+		<Authors>will258012</Authors>
+		<Company>$(Authors)</Company>
+		<Copyright>Copyright © $(Authors) 2025</Copyright>
+		<Version>1.0.0</Version>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<FileVersion>$(Version)</FileVersion>
+		<AppDeployDir>$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Addons\Mods\$(RootNamespace)</AppDeployDir>
+		<ModDeployDir>$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Addons\Mods\$(RootNamespace)</ModDeployDir>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	</PropertyGroup>
+</Project>

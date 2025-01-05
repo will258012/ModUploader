@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModUploader.App", "ModUploader.App\ModUploader.App.csproj", "{E62008A1-6403-43FB-99FD-50FC93AF1A13}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{C58B6602-368C-4C7B-8C5D-4530ACEFDDE8}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModUploader.Mod", "ModUploader.Mod\ModUploader.Mod.csproj", "{C2CD37B1-E56B-450B-9263-6A129C3312CF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WillCommonsShared", "..\WillCommons\WillCommonsShared.shproj", "{8086A3B3-4A05-4054-9CEF-05E381BA467B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E62008A1-6403-43FB-99FD-50FC93AF1A13}.Debug|x64.ActiveCfg = Debug|x64
+		{E62008A1-6403-43FB-99FD-50FC93AF1A13}.Debug|x64.Build.0 = Debug|x64
+		{E62008A1-6403-43FB-99FD-50FC93AF1A13}.Release|x64.ActiveCfg = Release|x64
+		{E62008A1-6403-43FB-99FD-50FC93AF1A13}.Release|x64.Build.0 = Release|x64
+		{C2CD37B1-E56B-450B-9263-6A129C3312CF}.Debug|x64.ActiveCfg = Debug|x64
+		{C2CD37B1-E56B-450B-9263-6A129C3312CF}.Debug|x64.Build.0 = Debug|x64
+		{C2CD37B1-E56B-450B-9263-6A129C3312CF}.Release|x64.ActiveCfg = Release|x64
+		{C2CD37B1-E56B-450B-9263-6A129C3312CF}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\WillCommons\WillCommonsShared.projitems*{8086a3b3-4a05-4054-9cef-05e381ba467b}*SharedItemsImports = 13
+		..\WillCommons\WillCommonsShared.projitems*{c2cd37b1-e56b-450b-9263-6a129c3312cf}*SharedItemsImports = 5
+	EndGlobalSection
+EndGlobal

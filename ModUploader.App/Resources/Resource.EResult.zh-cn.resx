@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="k_EResultOK" xml:space="preserve">
+    <value>成功。</value>
+  </data>
+  <data name="k_EResultFail" xml:space="preserve">
+    <value>一般失败。</value>
+  </data>
+  <data name="k_EResultNoConnection" xml:space="preserve">
+    <value>您的 Steam 客户端没有连接后端。</value>
+  </data>
+  <data name="k_EResultInvalidPassword" xml:space="preserve">
+    <value>密码/票证无效。</value>
+  </data>
+  <data name="k_EResultLoggedInElsewhere" xml:space="preserve">
+    <value>用户在别处登录。</value>
+  </data>
+  <data name="k_EResultInvalidProtocolVer" xml:space="preserve">
+    <value>协议版本错误。</value>
+  </data>
+  <data name="k_EResultInvalidParam" xml:space="preserve">
+    <value>参数不正确。</value>
+  </data>
+  <data name="k_EResultFileNotFound" xml:space="preserve">
+    <value>未找到文件。</value>
+  </data>
+  <data name="k_EResultBusy" xml:space="preserve">
+    <value>调用的方法繁忙，未进行操作。</value>
+  </data>
+  <data name="k_EResultInvalidState" xml:space="preserve">
+    <value>调用的对象处于无效状态。</value>
+  </data>
+  <data name="k_EResultInvalidName" xml:space="preserve">
+    <value>名称无效。</value>
+  </data>
+  <data name="k_EResultInvalidEmail" xml:space="preserve">
+    <value>电子邮件无效。</value>
+  </data>
+  <data name="k_EResultDuplicateName" xml:space="preserve">
+    <value>名称不是唯一的。</value>
+  </data>
+  <data name="k_EResultAccessDenied" xml:space="preserve">
+    <value>访问被拒绝。</value>
+  </data>
+  <data name="k_EResultTimeout" xml:space="preserve">
+    <value>操作超时。</value>
+  </data>
+  <data name="k_EResultBanned" xml:space="preserve">
+    <value>用户受到 VAC 封禁。</value>
+  </data>
+  <data name="k_EResultAccountNotFound" xml:space="preserve">
+    <value>未找到帐户。</value>
+  </data>
+  <data name="k_EResultInvalidSteamID" xml:space="preserve">
+    <value>Steam ID 无效。</value>
+  </data>
+  <data name="k_EResultServiceUnavailable" xml:space="preserve">
+    <value>请求的服务当前不可用。</value>
+  </data>
+  <data name="k_EResultNotLoggedOn" xml:space="preserve">
+    <value>用户未登录。</value>
+  </data>
+  <data name="k_EResultPending" xml:space="preserve">
+    <value>请求正待处理，可能已在进程中或在等待第三方。</value>
+  </data>
+  <data name="k_EResultEncryptionFailure" xml:space="preserve">
+    <value>加密或解密失败。</value>
+  </data>
+  <data name="k_EResultInsufficientPrivilege" xml:space="preserve">
+    <value>权限不足。</value>
+  </data>
+  <data name="k_EResultLimitExceeded" xml:space="preserve">
+    <value>过量。</value>
+  </data>
+  <data name="k_EResultRevoked" xml:space="preserve">
+    <value>访问已被撤销（用于被撤销的玩家通行证）。</value>
+  </data>
+  <data name="k_EResultExpired" xml:space="preserve">
+    <value>用户尝试访问的许可/玩家通行证已失效。</value>
+  </data>
+  <data name="k_EResultAlreadyRedeemed" xml:space="preserve">
+    <value>玩家通行证已被帐户兑换，不能再次使用。</value>
+  </data>
+  <data name="k_EResultDuplicateRequest" xml:space="preserve">
+    <value>重复请求，操作已进行，忽略此请求。</value>
+  </data>
+  <data name="k_EResultAlreadyOwned" xml:space="preserve">
+    <value>用户已拥有此玩家通行证兑换请求中的所有游戏。</value>
+  </data>
+  <data name="k_EResultIPNotFound" xml:space="preserve">
+    <value>未找到 IP 地址。</value>
+  </data>
+  <data name="k_EResultPersistFailed" xml:space="preserve">
+    <value>将更改写入数据存储失败。</value>
+  </data>
+  <data name="k_EResultLockingFailed" xml:space="preserve">
+    <value>为此操作获取访问锁定失败。</value>
+  </data>
+  <data name="k_EResultLogonSessionReplaced" xml:space="preserve">
+    <value>登录会话已被替换。</value>
+  </data>
+  <data name="k_EResultConnectFailed" xml:space="preserve">
+    <value>连接失败。</value>
+  </data>
+  <data name="k_EResultHandshakeFailed" xml:space="preserve">
+    <value>验证握手失败。</value>
+  </data>
+  <data name="k_EResultIOFailure" xml:space="preserve">
+    <value>出现一般 IO 失败。</value>
+  </data>
+  <data name="k_EResultRemoteDisconnect" xml:space="preserve">
+    <value>远程服务器已断开连接。</value>
+  </data>
+  <data name="k_EResultShoppingCartNotFound" xml:space="preserve">
+    <value>未找到请求的购物车。</value>
+  </data>
+  <data name="k_EResultBlocked" xml:space="preserve">
+    <value>一个用户阻止了操作。</value>
+  </data>
+  <data name="k_EResultIgnored" xml:space="preserve">
+    <value>目标忽略发送方。</value>
+  </data>
+  <data name="k_EResultNoMatch" xml:space="preserve">
+    <value>未找到与请求匹配的信息。</value>
+  </data>
+  <data name="k_EResultAccountDisabled" xml:space="preserve">
+    <value>帐户被禁用。</value>
+  </data>
+  <data name="k_EResultServiceReadOnly" xml:space="preserve">
+    <value>此服务目前不接受内容更改。</value>
+  </data>
+  <data name="k_EResultAccountNotFeatured" xml:space="preserve">
+    <value>帐户未充值，此功能不可用。</value>
+  </data>
+  <data name="k_EResultAdministratorOK" xml:space="preserve">
+    <value>只有在管理员发出请求时才允许采用此操作。</value>
+  </data>
+  <data name="k_EResultContentVersion" xml:space="preserve">
+    <value>在 Steam 协议中传输的内容版本不匹配。</value>
+  </data>
+  <data name="k_EResultTryAnotherCM" xml:space="preserve">
+    <value>当前 CM 不能服务发出请求的用户。用户应重试。</value>
+  </data>
+  <data name="k_EResultPasswordRequiredToKickSession" xml:space="preserve">
+    <value>您已经在别处登录，此缓存的凭据登录已失效。</value>
+  </data>
+  <data name="k_EResultAlreadyLoggedInElsewhere" xml:space="preserve">
+    <value>用户在别处登录。（应换用 k_EResultLoggedInElsewhere！）</value>
+  </data>
+  <data name="k_EResultSuspended" xml:space="preserve">
+    <value>长时间运行的操作已中止/暂停。（如 内容下载。）</value>
+  </data>
+  <data name="k_EResultCancelled" xml:space="preserve">
+    <value>操作被取消，通常是被用户取消。（如 内容下载。）</value>
+  </data>
+  <data name="k_EResultDataCorruption" xml:space="preserve">
+    <value>因数据状况欠佳或不可恢复而取消操作。</value>
+  </data>
+  <data name="k_EResultDiskFull" xml:space="preserve">
+    <value>磁盘空间不足，取消操作。</value>
+  </data>
+  <data name="k_EResultRemoteCallFailed" xml:space="preserve">
+    <value>远程或 IPC 调用失败。</value>
+  </data>
+  <data name="k_EResultPasswordUnset" xml:space="preserve">
+    <value>密码在服务器端未设置，无法验证。</value>
+  </data>
+  <data name="k_EResultExternalAccountUnlinked" xml:space="preserve">
+    <value>外部帐户（PSN、Facebook 等）未链接至 Steam 帐户。</value>
+  </data>
+  <data name="k_EResultPSNTicketInvalid" xml:space="preserve">
+    <value>PSN 票证无效。</value>
+  </data>
+  <data name="k_EResultExternalAccountAlreadyLinked" xml:space="preserve">
+    <value>外部帐户（PSN、Facebook 等）已链接至其他帐户，必须先显式请求替代/删除此链接。</value>
+  </data>
+  <data name="k_EResultRemoteFileConflict" xml:space="preserve">
+    <value>由于本地与远程文件冲突，同步无法继续。</value>
+  </data>
+  <data name="k_EResultIllegalPassword" xml:space="preserve">
+    <value>请求的新密码不被接受。</value>
+  </data>
+  <data name="k_EResultSameAsPreviousValue" xml:space="preserve">
+    <value>新值与旧值相同。 用于安全问题及其答案。</value>
+  </data>
+  <data name="k_EResultAccountLogonDenied" xml:space="preserve">
+    <value>由于第二步验证失败，帐户登录被拒绝。</value>
+  </data>
+  <data name="k_EResultCannotUseOldPassword" xml:space="preserve">
+    <value>请求的新密码不受认可。</value>
+  </data>
+  <data name="k_EResultInvalidLoginAuthCode" xml:space="preserve">
+    <value>由于验证码无效，帐户登录被拒。</value>
+  </data>
+  <data name="k_EResultAccountLogonDeniedNoMail" xml:space="preserve">
+    <value>由于第二步验证失败，帐户登录被拒，且未发送邮件。</value>
+  </data>
+  <data name="k_EResultHardwareNotCapableOfIPT" xml:space="preserve">
+    <value>用户硬件不支持英特尔身份保护技术（IPT）。</value>
+  </data>
+  <data name="k_EResultIPTInitError" xml:space="preserve">
+    <value>英特尔身份保护技术（IPT）初始化失败。</value>
+  </data>
+  <data name="k_EResultParentalControlRestricted" xml:space="preserve">
+    <value>由于当前用户受家长控制限制，操作失败。</value>
+  </data>
+  <data name="k_EResultFacebookQueryError" xml:space="preserve">
+    <value>Facebook 查询返回错误。</value>
+  </data>
+  <data name="k_EResultExpiredLoginAuthCode" xml:space="preserve">
+    <value>由于验证码失效，帐户登录被拒。</value>
+  </data>
+  <data name="k_EResultIPLoginRestrictionFailed" xml:space="preserve">
+    <value>由于 IP 限制，登录失败。</value>
+  </data>
+  <data name="k_EResultAccountLockedDown" xml:space="preserve">
+    <value>当前用户帐户目前被锁定，无法使用。 通常是因为帐户劫持和待处理的所有权验证。</value>
+  </data>
+  <data name="k_EResultAccountLogonDeniedVerifiedEmailRequired" xml:space="preserve">
+    <value>由于帐户电子邮件未能验证，登录失败。</value>
+  </data>
+  <data name="k_EResultNoMatchingURL" xml:space="preserve">
+    <value>无与提供的值匹配的 URL。</value>
+  </data>
+  <data name="k_EResultBadResponse" xml:space="preserve">
+    <value>由于分析失败、字段遗失等导致错误响应。</value>
+  </data>
+  <data name="k_EResultRequirePasswordReEntry" xml:space="preserve">
+    <value>用户不能完成操作，直到重新输入密码为止。</value>
+  </data>
+  <data name="k_EResultValueOutOfRange" xml:space="preserve">
+    <value>输入的值在可接收范围之外。</value>
+  </data>
+  <data name="k_EResultUnexpectedError" xml:space="preserve">
+    <value>发生了完全不曾预料的情况。</value>
+  </data>
+  <data name="k_EResultDisabled" xml:space="preserve">
+    <value>请求的服务已配置为不可用。</value>
+  </data>
+  <data name="k_EResultInvalidCEGSubmission" xml:space="preserve">
+    <value>提交至 CEG 服务器的文件无效。</value>
+  </data>
+  <data name="k_EResultRestrictedDevice" xml:space="preserve">
+    <value>使用的设备未获执行此操作的许可。</value>
+  </data>
+  <data name="k_EResultRegionLocked" xml:space="preserve">
+    <value>由于地区限制，操作不能完成。</value>
+  </data>
+  <data name="k_EResultRateLimitExceeded" xml:space="preserve">
+    <value>超出暂时性速率极限，稍后再试。</value>
+  </data>
+  <data name="k_EResultAccountLoginDeniedNeedTwoFactor" xml:space="preserve">
+    <value>需要双重验证码登录。</value>
+  </data>
+  <data name="k_EResultItemDeleted" xml:space="preserve">
+    <value>我们尝试访问的物品已被删除。</value>
+  </data>
+  <data name="k_EResultAccountLoginDeniedThrottle" xml:space="preserve">
+    <value>尝试登录失败，尝试阻止对可能的攻击者响应。</value>
+  </data>
+  <data name="k_EResultTwoFactorCodeMismatch" xml:space="preserve">
+    <value>双重验证（Steam 令牌）码不正确。</value>
+  </data>
+  <data name="k_EResultTwoFactorActivationCodeMismatch" xml:space="preserve">
+    <value>双因素验证（Steam 令牌）激活码不匹配。</value>
+  </data>
+  <data name="k_EResultAccountAssociatedToMultiplePartners" xml:space="preserve">
+    <value>当前帐户已与多个合作伙伴相关联。</value>
+  </data>
+  <data name="k_EResultNotModified" xml:space="preserve">
+    <value>数据尚未修改。</value>
+  </data>
+  <data name="k_EResultNoMobileDevice" xml:space="preserve">
+    <value>帐户无相关联的移动设备。</value>
+  </data>
+  <data name="k_EResultTimeNotSynced" xml:space="preserve">
+    <value>提供的时间在范围或容差之外。</value>
+  </data>
+  <data name="k_EResultSmsCodeFailed" xml:space="preserve">
+    <value>短信代码失败：无匹配、无一待处理等。</value>
+  </data>
+  <data name="k_EResultAccountLimitExceeded" xml:space="preserve">
+    <value>访问此资源的帐户过多。</value>
+  </data>
+  <data name="k_EResultAccountActivityLimitExceeded" xml:space="preserve">
+    <value>此帐户的更改过多。</value>
+  </data>
+  <data name="k_EResultPhoneActivityLimitExceeded" xml:space="preserve">
+    <value>此手机号码的更改过多。</value>
+  </data>
+  <data name="k_EResultRefundToWallet" xml:space="preserve">
+    <value>无法退款至原支付手段，必须使用 Steam 钱包。</value>
+  </data>
+  <data name="k_EResultEmailSendFailure" xml:space="preserve">
+    <value>无法发送电子邮件。</value>
+  </data>
+  <data name="k_EResultNotSettled" xml:space="preserve">
+    <value>在支付确认前无法执行操作。</value>
+  </data>
+  <data name="k_EResultNeedCaptcha" xml:space="preserve">
+    <value>用户需提供有效的 captcha。</value>
+  </data>
+  <data name="k_EResultGSLTDenied" xml:space="preserve">
+    <value>此令牌所有者拥有的一个游戏服务器登录令牌已被封禁。</value>
+  </data>
+  <data name="k_EResultGSOwnerDenied" xml:space="preserve">
+    <value>游戏服务器所有者因其他原因被拒，如帐户锁定、社区封禁、VAC 封禁、遗失手机等。</value>
+  </data>
+  <data name="k_EResultInvalidItemType" xml:space="preserve">
+    <value>我们收到请求进行操作的物品类型无效。</value>
+  </data>
+  <data name="k_EResultIPBanned" xml:space="preserve">
+    <value>地址被禁止采取此操作。</value>
+  </data>
+  <data name="k_EResultGSLTExpired" xml:space="preserve">
+    <value>此游戏服务器登录令牌（GSLT）的停用已到期，可以重置再用。</value>
+  </data>
+  <data name="k_EResultInsufficientFunds" xml:space="preserve">
+    <value>用户无足够钱包资金完成操作。</value>
+  </data>
+  <data name="k_EResultTooManyPending" xml:space="preserve">
+    <value>已有过多待处理物品。</value>
+  </data>
+</root>
