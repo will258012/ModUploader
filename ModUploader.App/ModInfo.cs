@@ -4,14 +4,15 @@
     {
         public string Name { get; }
         public string Description { get; }
-        public bool IsNewMod { get; }
         public ulong PublishedFileId { get; set; }
+        public bool IsNewMod { get; }
+        public bool UpdatePreviewOnly { get; }
         public PublishedFileId_t PublishedFileId_t => new(PublishedFileId);
-
-        public ModInfo(uint publishedFileId)
+        public ModInfo(uint publishedFileId, bool updatePreviewOnly)
         {
             Program.Logger.Info($"Querying {publishedFileId}...");
             PublishedFileId = publishedFileId;
+            UpdatePreviewOnly = updatePreviewOnly;
             var handle = SteamUGC.CreateQueryUGCDetailsRequest([PublishedFileId_t], 1);
             SteamUGC.AddRequiredTag(handle, "Mod");
 
@@ -55,11 +56,11 @@
             }
         }
 
-        public ModInfo(string name, string description, bool isNewMod = true)
+        public ModInfo(string name, string description)
         {
             Name = name;
             Description = description;
-            IsNewMod = isNewMod;
+            IsNewMod = true;
         }
 
         private void OnUGCQueryCompleted(SteamUGCQueryCompleted_t result, bool bIOFailure) => isReady.Set();

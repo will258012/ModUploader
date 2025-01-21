@@ -6,7 +6,7 @@
 		<Authors>will258012</Authors>
 		<Company>$(Authors)</Company>
 		<Copyright>Copyright © $(Authors) 2025</Copyright>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
 		<AppDeployDir>$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Addons\Mods\$(RootNamespace)</AppDeployDir>

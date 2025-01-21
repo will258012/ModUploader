@@ -1,6 +1,9 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using ShellProgressBar;
+using System.Collections.Generic;
+using System;
 using System.Diagnostics;
+using System.Security.Policy;
 namespace ModUploader
 {
     public class UploadHelper
@@ -16,28 +19,43 @@ namespace ModUploader
         private string currentContentFolderPath = "";
         private string? currentPreviewImageFilePath;
         private readonly Lazy<string> _lazyCompatibleTag = new Lazy<string>(GetCompatibleTag);
-
+        private FileStream[] stream = new FileStream[2];
         /// <summary>
-        /// Update a mod, use provided paths.
+        /// Use provided paths to start an upload process.
         /// </summary>
         /// <param name="mod">mod info.</param>
         /// <param name="contentPath">Mod content path.</param>
         /// <param name="previewImagePath">Mod preview image path. If null, will not change the image.</param>
-        public void UpdateMod(ModInfo mod, string contentPath, string? previewImagePath)
+        public void StartUpload(ModInfo mod, string contentPath, string? previewImagePath)
         {
-            currentContentFolderPath = contentPath;
-            currentPreviewImageFilePath = previewImagePath;
+            if (mod.IsNewMod)
+            {
+                CreateItem(ref mod);
+                currentContentFolderPath = contentPath;
+                currentPreviewImageFilePath = previewImagePath ?? CreatePreviewImageFile(Path.GetTempPath());
+            }
+            else
+            {
+                currentContentFolderPath = contentPath;
+                currentPreviewImageFilePath = previewImagePath;
+            }
+            VerifyAndOccupy();
             UploadItem(mod);
+            ReleaseOccupy();
         }
 
         /// <summary>
-        /// Update a mod, manual choose the paths.
+        /// Manual choose the paths to start an upload process.
         /// </summary>
         /// <param name="mod">mod info.</param>
-        public void UpdateMod(ModInfo mod)
+        public void StartUpload(ModInfo mod)
         {
-            ChooseFolder(mod.IsNewMod);
+            ChooseFolder(mod);
+            if (mod.IsNewMod)
+                CreateItem(ref mod);
+            VerifyAndOccupy();
             UploadItem(mod);
+            ReleaseOccupy();
         }
         /// <summary>
         /// Upload a workshop item.
@@ -46,6 +64,7 @@ namespace ModUploader
         /// <exception cref="Exception"></exception>
         private void UploadItem(ModInfo mod)
         {
+            Program.Logger.Info($"Workshop item {mod.PublishedFileId} upload started.");
             var handle = SteamUGC.StartItemUpdate(CSL_APPLD_T, mod.PublishedFileId_t);
 
             if (mod.IsNewMod)
@@ -57,13 +76,13 @@ namespace ModUploader
             if (currentPreviewImageFilePath != null)
                 SteamUGC.SetItemPreview(handle, currentPreviewImageFilePath);
 
-            SteamUGC.SetItemContent(handle, currentContentFolderPath);
+            if (!mod.UpdatePreviewOnly)
+                SteamUGC.SetItemContent(handle, currentContentFolderPath);
 
             SteamUGC.SetItemTags(handle, ["Mod", CompatibleTag]);
 
             var callback = SteamUGC.SubmitItemUpdate(handle, "");
             CallResult<SubmitItemUpdateResult_t>.Create(OnItemSubmitted).Set(callback);
-            Program.Logger.Info($"Workshop item {mod.PublishedFileId} upload started.");
 
             var progressOptions = new ProgressBarOptions
             {
@@ -75,7 +94,7 @@ namespace ModUploader
                 ForegroundColorError = ConsoleColor.DarkRed,
             };
 
-            using var progressBar = new ShellProgressBar.ProgressBar(100, Upload_Uploading, progressOptions);
+            using var progressBar = new ProgressBar(100, Upload_Uploading, progressOptions);
             while (!isReady.WaitOne(50))
             {
                 SteamAPI.RunCallbacks();
@@ -100,39 +119,16 @@ namespace ModUploader
             Program.Logger.Info($"Workshop item {mod.PublishedFileId} is successfully uploaded.");
         }
         /// <summary>
-        /// Update a mod, use provided paths.
-        /// </summary>
-        /// <param name="mod">mod info.</param>
-        /// <param name="contentPath">Mod content path.</param>
-        /// <param name="previewImagePath">Mod preview image path. If null, will use the default image.</param>
-        public void CreateMod(ModInfo mod, string contentPath, string? previewImagePath)
-        {
-            CreateItem(ref mod);
-            currentContentFolderPath = contentPath;
-            currentPreviewImageFilePath = previewImagePath ?? CreatePreviewImageFile(Path.GetTempPath());
-            UploadItem(mod);
-        }
-        /// <summary>
-        /// Create a mod, manual choose the paths.
-        /// </summary>
-        /// <param name="mod">mod info.</param>
-        public void CreateMod(ModInfo mod)
-        {
-            ChooseFolder(mod.IsNewMod);
-            CreateItem(ref mod);
-            UploadItem(mod);
-        }
-        /// <summary>
         /// Create a workshop item.
         /// </summary>
         /// <param name="mod">Mod info.</param>
         /// <exception cref="Exception"></exception>
         private void CreateItem(ref ModInfo mod)
         {
-            SteamAPICall_t steamAPICall_t = SteamUGC.CreateItem(CSL_APPLD_T, EWorkshopFileType.k_EWorkshopFileTypeFirst);
+            Program.Logger.Info("Workshop item creation started.");
+            var steamAPICall_t = SteamUGC.CreateItem(CSL_APPLD_T, EWorkshopFileType.k_EWorkshopFileTypeFirst);
             CallResult<CreateItemResult_t>.Create(OnItemCreated).Set(steamAPICall_t);
             Console.WriteLine(Upload_Creating);
-            Program.Logger.Info("Workshop item creation started.");
             while (!isReady.WaitOne(50))
             {
                 SteamAPI.RunCallbacks();
@@ -145,14 +141,13 @@ namespace ModUploader
             Console.WriteLine(string.Format(Upload_CreateSuccess, mod.PublishedFileId));
             Program.Logger.Info($"Workshop item {mod.PublishedFileId} is successfully created.");
         }
-
-        private void ChooseFolder(bool isNewMod)
+        private void ChooseFolder(ModInfo mod)
         {
-            currentContentFolderPath = ChooseContentFolder();
-            currentPreviewImageFilePath = ChoosePreviewImageFile(isNewMod);
+            Program.Logger.Info("Started folder choosing.");
+            if (!mod.UpdatePreviewOnly)
+                currentContentFolderPath = ChooseContentFolder();
+            currentPreviewImageFilePath = ChoosePreviewImageFile(mod);
         }
-
-
         private static string ChooseContentFolder()
         {
             Console.WriteLine(Upload_ChooseContentFolder_Title);
@@ -167,32 +162,31 @@ namespace ModUploader
 
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                return dialog.FileName;
+                return dialog.FileName ?? "";
             }
 
             throw new InvalidOperationException(Upload_ChooseContentFolder_Cancel);
         }
-
-
-        private static string? ChoosePreviewImageFile(bool isNewMod)
+        private static string? ChoosePreviewImageFile(ModInfo mod)
         {
             string? file = null;
-            using (TaskDialog taskDialog = new()
-            {
-                Caption = Console.Title,
-                InstructionText = isNewMod ? Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Newmod : Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Update,
-                Text = isNewMod ? Upload_ChoosePreviewImageFile_TaskDialog_Text_NewMod : Upload_ChoosePreviewImageFile_TaskDialog_Text_Update,
-                Icon = TaskDialogStandardIcon.Information,
-                StandardButtons = TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No,
-            })
-            {
-                TaskDialogResult result = taskDialog.Show();
-                if (result == TaskDialogResult.No)
+            if (!mod.UpdatePreviewOnly)
+                using (TaskDialog taskDialog = new()
                 {
-                    return isNewMod ? CreatePreviewImageFile(Path.GetTempPath()) : null;
+                    Caption = Console.Title,
+                    InstructionText = mod.IsNewMod ? Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Newmod : Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Update,
+                    Text = mod.IsNewMod ? Upload_ChoosePreviewImageFile_TaskDialog_Text_NewMod : Upload_ChoosePreviewImageFile_TaskDialog_Text_Update,
+                    Icon = TaskDialogStandardIcon.Information,
+                    StandardButtons = TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No,
+                })
+                {
+                    TaskDialogResult result = taskDialog.Show();
+                    if (result == TaskDialogResult.No)
+                    {
+                        return mod.IsNewMod ? CreatePreviewImageFile(Path.GetTempPath()) : null;
+                    }
                 }
-            }
-
+            Console.WriteLine(Upload_ChoosePreviewImageFile_OpenFileDialog_Title);
             using (CommonOpenFileDialog dialog = new()
             {
                 Title = Upload_ChoosePreviewImageFile_OpenFileDialog_Title,
@@ -206,18 +200,23 @@ namespace ModUploader
                 {
                     file = dialog.FileName;
                 }
-                else
+                else if (!mod.UpdatePreviewOnly)
                 {
-                    file = isNewMod ? CreatePreviewImageFile(Path.GetTempPath()) : null;
-                    TaskDialog.Show(null, isNewMod ? Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Newmod :
+                    file = mod.IsNewMod ? CreatePreviewImageFile(Path.GetTempPath()) : null;
+                    TaskDialog.Show(null, mod.IsNewMod ? Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Newmod :
                         Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Update,
                         Console.Title, TaskDialogStandardIcon.Information);
                 }
+                else throw new InvalidOperationException(Upload_ChooseContentFolder_Cancel);
             }
 
             return file;
         }
-
+        /// <summary>
+        /// Create the default preview image file from embedded resources.
+        /// </summary>
+        /// <param name="path">the directory path where the image being created</param>
+        /// <returns>The image's path</returns>
         private static string CreatePreviewImageFile(string path)
         {
             string folder = Path.Combine(path, "PreviewImage.png");
@@ -230,7 +229,31 @@ namespace ModUploader
             }
             return folder;
         }
-
+        /// <summary>
+        /// Check and occupy the necessary files.
+        /// Prevent invalid files from being uploaded (a mod obviously has at least one assembly!),
+        /// and files from being deleted or modified during the upload process.
+        /// </summary>
+        /// <exception cref="DllNotFoundException"></exception>
+        private void VerifyAndOccupy()
+        {
+            if (!string.IsNullOrEmpty(currentPreviewImageFilePath))
+                stream[0] = new FileStream(currentPreviewImageFilePath, FileMode.Open);//Occupy the preview image file.
+            var dllFiles = Directory.GetFiles(currentContentFolderPath, "*.dll");
+            if (dllFiles.Length == 0)
+            {
+                throw new DllNotFoundException(Upload_NoDll);
+            }
+            stream[1] = new FileStream(dllFiles.First(), FileMode.Open);//Occupy the assembly file (also means the whole content folder)
+        }
+        /// <summary>
+        /// Release the occupied files.
+        /// </summary>
+        private void ReleaseOccupy()
+        {
+            stream[0]?.Close();
+            stream[1]?.Close();
+        }
         public static string GetCSLPath()
         {
             SteamApps.GetAppInstallDir(CSL_APPLD_T, out string path, 256U);
@@ -244,6 +267,7 @@ namespace ModUploader
 
         public static string GetCompatibleTag()
         {
+            Program.Logger.Info("Getting compatible tag");
             try
             {
                 var cslPath = GetCSLPath();
@@ -271,7 +295,7 @@ namespace ModUploader
             }
             catch (Exception e)
             {
-                throw new Exception("Failed to retrieve compatible tag.", e);
+                throw new Exception("Failed to receive compatible tag.", e);
             }
         }
         public void GetModList()

@@ -110,9 +110,10 @@ namespace ModUploader.Resources {
         
         /// <summary>
         ///   查找类似 Please enter your mod&apos;s workshop ID or URL to update your mod, or vaild operation:
-        ///- &apos;mymod&apos; show your mods in a list
-        ///- &apos;newmod&apos; create a new mod
-        ///- &apos;exit&apos; exit 的本地化字符串。
+        ///- &quot;mymod&quot; show your mods in a list
+        ///- &quot;newmod&quot; create a new mod
+        ///- &quot;exit&quot; exit
+        ///- Only want to update the preview image? Attach &quot;-updatePreviewOnly&quot; after the ID or URL 的本地化字符串。
         /// </summary>
         internal static string Main_Message {
             get {
@@ -324,6 +325,15 @@ namespace ModUploader.Resources {
         internal static string Upload_GetModList_NoMod {
             get {
                 return ResourceManager.GetString("Upload_GetModList_NoMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 There must be at least one DLL file in the given content directory. 的本地化字符串。
+        /// </summary>
+        internal static string Upload_NoDll {
+            get {
+                return ResourceManager.GetString("Upload_NoDll", resourceCulture);
             }
         }
         

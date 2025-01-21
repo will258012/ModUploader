@@ -127,10 +127,11 @@
 “-newmod &lt;标题&gt; &lt;模组文件路径&gt; [&lt;预览图路径&gt;（忽略将会使用默认预览图）]” 创建一个新模组</value>
   </data>
   <data name="Main_Message" xml:space="preserve">
-    <value>请输入模组的创意工坊 ID 或 URL 来更新你的模组，或者执行以下有效操作：  
-- 'mymod' 查看您的模组列表  
-- 'newmod' 创建一个新模组  
-- 'exit' 退出  </value>
+    <value>请输入模组的创意工坊 ID 或 URL 来更新你的模组，或者执行以下有效操作：
+- “mymod” 查看您的模组列表  
+- “newmod” 创建一个新模组  
+- “exit” 退出
+- 若你只想更新模组的预览图，可在ID或URL后附上 “-UpdatePreviewOnly”</value>
   </data>
   <data name="Main_CreateFail" xml:space="preserve">
     <value>创建模组失败：</value>
@@ -215,5 +216,8 @@
   </data>
   <data name="Upload_ChooseContentFolder_Cancel" xml:space="preserve">
     <value>选择已被取消。</value>
+  </data>
+  <data name="Upload_NoDll" xml:space="preserve">
+    <value>给定的内容目录中至少须有一个dll文件。</value>
   </data>
 </root>

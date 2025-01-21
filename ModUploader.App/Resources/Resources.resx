@@ -128,9 +128,10 @@
   </data>
   <data name="Main_Message" xml:space="preserve">
     <value>Please enter your mod's workshop ID or URL to update your mod, or vaild operation:
-- 'mymod' show your mods in a list
-- 'newmod' create a new mod
-- 'exit' exit</value>
+- "mymod" show your mods in a list
+- "newmod" create a new mod
+- "exit" exit
+- Only want to update the preview image? Attach "-updatePreviewOnly" after the ID or URL</value>
   </data>
   <data name="Main_CreateFail" xml:space="preserve">
     <value>Failed to create mod:</value>
@@ -215,5 +216,8 @@
   </data>
   <data name="Upload_ChooseContentFolder_Cancel" xml:space="preserve">
     <value>You canceled the selection.</value>
+  </data>
+  <data name="Upload_NoDll" xml:space="preserve">
+    <value>There must be at least one DLL file in the given content directory.</value>
   </data>
 </root>

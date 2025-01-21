@@ -76,29 +76,37 @@ Version {Assembly.GetExecutingAssembly().GetName().Version}
                 while (true)
                 {
                     Console.WriteLine("\n" + Main_Message);
-                    var input = Console.ReadLine();
+                    var input = Console.ReadLine() ?? "";
 
-                    if (input.Equals("newmod", StringComparison.OrdinalIgnoreCase))
+                    switch (input.ToLower())
                     {
-                        CreateMod();
+                        case "":
+                            Console.Error.WriteLine(Main_InvalidInput);
+                            break;
+                        case "newmod":
+                            CreateMod();
+                            break;
+                        case "mymod":
+                            UploadHelper.Instance.GetModList();
+                            break;
+                        case "exit":
+                            return;
+                        default:
+                            var newInput = input.ToLower().Split(' ');
+                            if (uint.TryParse(newInput[0], out var workshopId))
+                            {
+                                UpdateMod(workshopId, input.Contains("-UpdatePreviewOnly", StringComparison.OrdinalIgnoreCase));
+                            }
+                            else if (TryExtractWorkshopIdFromURL(newInput[0], out var workshopId1))
+                            {
+                                UpdateMod(workshopId1, input.Contains("-UpdatePreviewOnly", StringComparison.OrdinalIgnoreCase));
+                            }
+                            else
+                            {
+                                Console.Error.WriteLine(Main_InvalidInput);
+                            }
+                            break;
                     }
-                    else if (input.Equals("mymod", StringComparison.OrdinalIgnoreCase))
-                    {
-                        UploadHelper.Instance.GetModList();
-                    }
-                    else if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
-                    {
-                        break;
-                    }
-                    else if (uint.TryParse(input, out var workshopId))
-                    {
-                        UpdateMod(workshopId);
-                    }
-                    else if (!string.IsNullOrEmpty(input) && TryExtractWorkshopIdFromURL(input, out var workshopId1))
-                    {
-                        UpdateMod(workshopId1);
-                    }
-                    else Console.Error.WriteLine(Main_InvalidInput);
                 }
                 #endregion
             }
@@ -131,7 +139,7 @@ Version {Assembly.GetExecutingAssembly().GetName().Version}
                 var description = Console.ReadLine() ?? string.Empty;
                 var mod = new ModInfo(name, description);
 
-                UploadHelper.Instance.CreateMod(mod);
+                UploadHelper.Instance.StartUpload(mod);
             }
             catch (Exception e)
             {
@@ -155,7 +163,7 @@ Version {Assembly.GetExecutingAssembly().GetName().Version}
                     throw new DirectoryNotFoundException(Main_DirectoryNotFound);
                 }
                 var mod = new ModInfo(title, "");
-                UploadHelper.Instance.CreateMod(mod, contentPath, previewImagePath);
+                UploadHelper.Instance.StartUpload(mod, contentPath, previewImagePath);
             }
             catch (Exception e)
             {
@@ -166,15 +174,15 @@ Version {Assembly.GetExecutingAssembly().GetName().Version}
         /// Update a mod.
         /// </summary>
         /// <param name="workshopId">Mod's workshop id.</param>
-        private static void UpdateMod(uint workshopId)
+        private static void UpdateMod(uint workshopId, bool updatePreviewOnly)
         {
             try
             {
-                Logger.Info($"Start mod update: {workshopId}");
+                Logger.Info($"Start mod update: workshopId:\"{workshopId}\" updatePreviewOnly:\"{updatePreviewOnly}\"");
                 Console.WriteLine(Main_Update_Getinfo);
-                var mod = new ModInfo(workshopId);
+                var mod = new ModInfo(workshopId,updatePreviewOnly);
                 Console.WriteLine($"{Main_Update_WillUpdate} {mod.Name} ({mod.PublishedFileId})");
-                UploadHelper.Instance.UpdateMod(mod);
+                UploadHelper.Instance.StartUpload(mod);
             }
             catch (Exception e)
             {
@@ -198,9 +206,9 @@ Version {Assembly.GetExecutingAssembly().GetName().Version}
                     throw new DirectoryNotFoundException(Main_DirectoryNotFound);
                 }
                 Console.WriteLine(Main_Update_Getinfo);
-                var mod = new ModInfo(workshopId);
+                var mod = new ModInfo(workshopId,false);
                 Console.WriteLine($"{Main_Update_WillUpdate} {mod.Name} ({mod.PublishedFileId})");
-                UploadHelper.Instance.UpdateMod(mod, contentPath, previewImagePath);
+                UploadHelper.Instance.StartUpload(mod, contentPath, previewImagePath);
             }
             catch (Exception e)
             {
