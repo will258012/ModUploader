@@ -239,12 +239,15 @@ namespace ModUploader
         {
             if (!string.IsNullOrEmpty(currentPreviewImageFilePath))
                 stream[0] = new FileStream(currentPreviewImageFilePath, FileMode.Open);//Occupy the preview image file.
-            var dllFiles = Directory.GetFiles(currentContentFolderPath, "*.dll");
-            if (dllFiles.Length == 0)
+            if (!string.IsNullOrEmpty(currentContentFolderPath))
             {
-                throw new DllNotFoundException(Upload_NoDll);
+                var dllFiles = Directory.GetFiles(currentContentFolderPath, "*.dll");
+                if (dllFiles.Length == 0)
+                {
+                    throw new DllNotFoundException(Upload_NoDll);
+                }
+                stream[1] = new FileStream(dllFiles.First(), FileMode.Open);//Occupy the assembly file (also means the whole content folder)
             }
-            stream[1] = new FileStream(dllFiles.First(), FileMode.Open);//Occupy the assembly file (also means the whole content folder)
         }
         /// <summary>
         /// Release the occupied files.
