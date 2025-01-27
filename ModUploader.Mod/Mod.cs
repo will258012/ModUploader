@@ -7,7 +7,7 @@ namespace ModUploader
     public class Mod : ModBase
     {
         public override string BaseName => "Mod Uploader";
-        public override string Description => "Create and update your mods without launching the game";
+        public override string Description => "Upload your mods to workshop easily and quickly without launching the game";
 
         public override void OnEnabled()
         {
@@ -16,13 +16,13 @@ namespace ModUploader
 
         public void OnSettingsUI(UIHelper helper)
         {
-            helper.AddButton("Create shout cut", CreateModUploaderShortcut);
+            helper.AddButton("Create shortcut", CreateModUploaderShortcut);
         }
         private void CreateModUploaderShortcut()
         {
             try
             {
-                Logging.Msg("Creating shout cut...");
+                Logging.Msg("Creating shortcut...");
                 string exePath = Path.Combine(Utils.GetAssemblyPath(), "ModUploader.exe");
                 string shortcutPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ModUploader.lnk");
                 Utils.CreateShortcut(shortcutPath, exePath, "", "ModUploader");
