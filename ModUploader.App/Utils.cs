@@ -1,9 +1,4 @@
 ﻿using ModUploader.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModUploader
 {
@@ -15,5 +10,21 @@ namespace ModUploader
         /// <param name="eResult">result.</param>
         /// <returns></returns>
         internal static string ToLocalizedString(this EResult eResult) => Resource_EResult.ResourceManager.GetString(eResult.ToString()) ?? eResult.ToString();
+    }
+    public static class Utils
+    {
+        public static bool Ping(string url)
+        {
+            try
+            {
+                using var client = new HttpClient();
+                var response = client.GetAsync(url).Result;
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

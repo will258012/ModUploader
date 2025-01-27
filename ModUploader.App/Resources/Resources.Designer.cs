@@ -82,6 +82,15 @@ namespace ModUploader.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Checking your internet connection to workshop, please wait... 的本地化字符串。
+        /// </summary>
+        internal static string Main_CheckingInternet {
+            get {
+                return ResourceManager.GetString("Main_CheckingInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Failed to create mod: 的本地化字符串。
         /// </summary>
         internal static string Main_CreateFail {
@@ -96,6 +105,15 @@ namespace ModUploader.Resources {
         internal static string Main_DirectoryNotFound {
             get {
                 return ResourceManager.GetString("Main_DirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Failed to initialize Steam API. 的本地化字符串。
+        /// </summary>
+        internal static string Main_InitFail {
+            get {
+                return ResourceManager.GetString("Main_InitFail", resourceCulture);
             }
         }
         
@@ -205,9 +223,9 @@ namespace ModUploader.Resources {
         /// <summary>
         ///   查找类似 Query Failed: 的本地化字符串。
         /// </summary>
-        internal static string ModInfo_QueryFailed {
+        internal static string ModInfo_QueryFail {
             get {
-                return ResourceManager.GetString("ModInfo_QueryFailed", resourceCulture);
+                return ResourceManager.GetString("ModInfo_QueryFail", resourceCulture);
             }
         }
         
@@ -334,6 +352,15 @@ namespace ModUploader.Resources {
         internal static string Upload_NoDll {
             get {
                 return ResourceManager.GetString("Upload_NoDll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Retrying... 的本地化字符串。
+        /// </summary>
+        internal static string Upload_Retry {
+            get {
+                return ResourceManager.GetString("Upload_Retry", resourceCulture);
             }
         }
         

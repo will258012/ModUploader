@@ -202,7 +202,7 @@
   <data name="Main_DirectoryNotFound" xml:space="preserve">
     <value>Invalid content path or/and preview image path.</value>
   </data>
-  <data name="ModInfo_QueryFailed" xml:space="preserve">
+  <data name="ModInfo_QueryFail" xml:space="preserve">
     <value>Query Failed:</value>
   </data>
   <data name="ModInfo_NotCSL" xml:space="preserve">
@@ -219,5 +219,14 @@
   </data>
   <data name="Upload_NoDll" xml:space="preserve">
     <value>There must be at least one DLL file in the given content directory.</value>
+  </data>
+  <data name="Upload_Retry" xml:space="preserve">
+    <value>Retrying...</value>
+  </data>
+  <data name="Main_CheckingInternet" xml:space="preserve">
+    <value>Checking your internet connection to workshop, please wait...</value>
+  </data>
+  <data name="Main_InitFail" xml:space="preserve">
+    <value>Failed to initialize Steam API.</value>
   </data>
 </root>

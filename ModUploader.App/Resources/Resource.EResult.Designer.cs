@@ -1022,14 +1022,5 @@ namespace ModUploader.Resources {
                 return ResourceManager.GetString("k_EResultValueOutOfRange", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Upload_ChooseContentFolder_Cansel {
-            get {
-                return ResourceManager.GetString("Upload_ChooseContentFolder_Cansel", resourceCulture);
-            }
-        }
     }
 }

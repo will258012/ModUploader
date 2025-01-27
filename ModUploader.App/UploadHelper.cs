@@ -1,15 +1,13 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using ShellProgressBar;
-using System.Collections.Generic;
-using System;
 using System.Diagnostics;
-using System.Security.Policy;
 namespace ModUploader
 {
     public class UploadHelper
     {
         public static UploadHelper Instance { get; } = new UploadHelper();
         public const uint CSL_APPID = 255710U;
+        const int MAX_RETRIES = 3;
         public static AppId_t CSL_APPLD_T => new AppId_t(255710U);
         public string CompatibleTag => _lazyCompatibleTag.Value;
 
@@ -30,7 +28,6 @@ namespace ModUploader
         {
             if (mod.IsNewMod)
             {
-                CreateItem(ref mod);
                 currentContentFolderPath = contentPath;
                 currentPreviewImageFilePath = previewImagePath ?? CreatePreviewImageFile(Path.GetTempPath());
             }
@@ -39,9 +36,7 @@ namespace ModUploader
                 currentContentFolderPath = contentPath;
                 currentPreviewImageFilePath = previewImagePath;
             }
-            VerifyAndOccupy();
-            UploadItem(mod);
-            ReleaseOccupy();
+            UploadImpl(mod);
         }
 
         /// <summary>
@@ -51,12 +46,59 @@ namespace ModUploader
         public void StartUpload(ModInfo mod)
         {
             ChooseFolder(mod);
-            if (mod.IsNewMod)
-                CreateItem(ref mod);
-            VerifyAndOccupy();
-            UploadItem(mod);
-            ReleaseOccupy();
+            UploadImpl(mod);
         }
+
+        private void UploadImpl(ModInfo mod)
+        {
+            if (mod.IsNewMod)// Create
+            {
+                int createMaxRetries = MAX_RETRIES;
+
+                while (createMaxRetries > 0)
+                {
+                    try
+                    {
+                        CreateItem(ref mod);
+                        createMaxRetries = 0; // Success  
+                    }
+                    catch (Exception e)
+                    {
+                        createMaxRetries--;
+                        Console.WriteLine($"{Upload_Retry} ({MAX_RETRIES - createMaxRetries} / {MAX_RETRIES})");
+                        if (createMaxRetries <= 0)
+                            throw;
+                        Program.Logger.Error(e);
+                        Program.Logger.Info($"Start retry operation: ({MAX_RETRIES - createMaxRetries} / {MAX_RETRIES})");
+                    }
+                }
+            }
+
+            int UploadMaxRetries = MAX_RETRIES;
+            VerifyAndOccupy();
+            while (UploadMaxRetries > 0)// Upload
+            {
+                try
+                {
+                    UploadItem(mod);
+                    UploadMaxRetries = 0; // Success
+                    ReleaseOccupy();
+                }
+                catch (Exception e)
+                {
+                    UploadMaxRetries--;
+                    Console.WriteLine($"{Upload_Retry} ({MAX_RETRIES - UploadMaxRetries} / {MAX_RETRIES})");
+                    if (UploadMaxRetries <= 0)
+                    {
+                        ReleaseOccupy();
+                        throw;
+                    }
+                    Program.Logger.Error(e);
+                    Program.Logger.Info($"Start retry operation: ({MAX_RETRIES - UploadMaxRetries} / {MAX_RETRIES})");
+                }
+            }
+        }
+
         /// <summary>
         /// Upload a workshop item.
         /// </summary>
@@ -111,7 +153,7 @@ namespace ModUploader
             if (submitItemUpdateResult.m_eResult != EResult.k_EResultOK)
             {
                 progressBar.ObservedError = true;
-                throw new Exception(submitItemUpdateResult.m_eResult.ToLocalizedString());
+                throw new Exception($"{submitItemUpdateResult.m_eResult.ToLocalizedString()} ({submitItemUpdateResult.m_eResult})");
             }
 
             Console.WriteLine(Upload_Success);
@@ -135,7 +177,7 @@ namespace ModUploader
             }
             if (createItemResult.m_eResult != EResult.k_EResultOK)
             {
-                throw new Exception(createItemResult.m_eResult.ToLocalizedString());
+                throw new Exception($"{createItemResult.m_eResult.ToLocalizedString()} ({createItemResult.m_eResult})");
             }
             mod.PublishedFileId = createItemResult.m_nPublishedFileId.m_PublishedFileId;
             Console.WriteLine(string.Format(Upload_CreateSuccess, mod.PublishedFileId));
@@ -326,7 +368,7 @@ namespace ModUploader
 
                     if (result.m_eResult != EResult.k_EResultOK)
                     {
-                        Program.Logger.Error($"Failed to fetch mod list: {result.m_eResult.ToLocalizedString()}");
+                        Program.Logger.Error($"Failed to fetch mod list: {result.m_eResult.ToLocalizedString()} ({result.m_eResult})");
                         return;
                     }
 

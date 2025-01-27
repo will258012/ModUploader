@@ -21,11 +21,14 @@ namespace ModUploader
             Environment.SetEnvironmentVariable("SteamAppId", UploadHelper.CSL_APPID.ToString());
             try
             {
-                if (!SteamAPI.Init())
+                if (SteamAPI.InitEx(out var msg) != ESteamAPIInitResult.k_ESteamAPIInitResult_OK)
                 {
-                    Logger.Fatal("Failed to initialize Steam API.");
-                    Console.WriteLine("Steam must be running!");
-                    return;
+                    throw new Exception($"{Main_InitFail} ({msg})");
+                }
+                Console.WriteLine(Main_CheckingInternet);
+                if (!Utils.Ping("http://steamcommunity.com/"))
+                {
+                    throw new Exception(Resources.Resource_EResult.k_EResultConnectFailed);
                 }
                 #region Command
                 if (args.Length > 0)
@@ -113,6 +116,7 @@ Version {Assembly.GetExecutingAssembly().GetName().Version}
             catch (Exception e)
             {
                 Logger.Fatal($"Unhandled exception: {e}");
+                TaskDialog.Show(e.ToString(), null, Console.Title, TaskDialogStandardIcon.Error);
             }
             finally
             {
@@ -144,6 +148,7 @@ Version {Assembly.GetExecutingAssembly().GetName().Version}
             catch (Exception e)
             {
                 Logger.Error(Main_CreateFail + e);
+                TaskDialog.Show(e.ToString(), Main_CreateFail, Console.Title, TaskDialogStandardIcon.Error);
             }
         }
         /// <summary>
@@ -168,6 +173,7 @@ Version {Assembly.GetExecutingAssembly().GetName().Version}
             catch (Exception e)
             {
                 Logger.Error(Main_CreateFail + e);
+                TaskDialog.Show(e.ToString(), Main_CreateFail, Console.Title, TaskDialogStandardIcon.Error);
             }
         }
         /// <summary>
@@ -180,13 +186,14 @@ Version {Assembly.GetExecutingAssembly().GetName().Version}
             {
                 Logger.Info($"Start mod update: workshopId:\"{workshopId}\" updatePreviewOnly:\"{updatePreviewOnly}\"");
                 Console.WriteLine(Main_Update_Getinfo);
-                var mod = new ModInfo(workshopId,updatePreviewOnly);
+                var mod = new ModInfo(workshopId, updatePreviewOnly);
                 Console.WriteLine($"{Main_Update_WillUpdate} {mod.Name} ({mod.PublishedFileId})");
                 UploadHelper.Instance.StartUpload(mod);
             }
             catch (Exception e)
             {
                 Logger.Error(Main_UpdateFail + e);
+                TaskDialog.Show(e.ToString(), Main_UpdateFail, Console.Title, TaskDialogStandardIcon.Error);
             }
         }
         /// <summary>
@@ -206,13 +213,14 @@ Version {Assembly.GetExecutingAssembly().GetName().Version}
                     throw new DirectoryNotFoundException(Main_DirectoryNotFound);
                 }
                 Console.WriteLine(Main_Update_Getinfo);
-                var mod = new ModInfo(workshopId,false);
+                var mod = new ModInfo(workshopId, false);
                 Console.WriteLine($"{Main_Update_WillUpdate} {mod.Name} ({mod.PublishedFileId})");
                 UploadHelper.Instance.StartUpload(mod, contentPath, previewImagePath);
             }
             catch (Exception e)
             {
                 Logger.Error(Main_UpdateFail + e);
+                TaskDialog.Show(e.ToString(), Main_UpdateFail, Console.Title, TaskDialogStandardIcon.Error);
             }
         }
         private static bool TryExtractWorkshopIdFromURL(string URL, out uint workshopId)

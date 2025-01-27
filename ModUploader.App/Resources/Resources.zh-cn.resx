@@ -202,7 +202,7 @@
   <data name="Main_DirectoryNotFound" xml:space="preserve">
     <value>内容路径或/和预览图路径无效。</value>
   </data>
-  <data name="ModInfo_QueryFailed" xml:space="preserve">
+  <data name="ModInfo_QueryFail" xml:space="preserve">
     <value>查询失败：</value>
   </data>
   <data name="ModInfo_NotCSL" xml:space="preserve">
@@ -219,5 +219,14 @@
   </data>
   <data name="Upload_NoDll" xml:space="preserve">
     <value>给定的内容目录中至少须有一个dll文件。</value>
+  </data>
+  <data name="Upload_Retry" xml:space="preserve">
+    <value>重试……</value>
+  </data>
+  <data name="Main_CheckingInternet" xml:space="preserve">
+    <value>正在检查你与创意工坊的网络连接，请稍候……</value>
+  </data>
+  <data name="Main_InitFail" xml:space="preserve">
+    <value>初始化Steam API失败。</value>
   </data>
 </root>

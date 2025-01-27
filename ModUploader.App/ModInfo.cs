@@ -32,7 +32,7 @@
             string? error = string.Empty;
             if (queryResult.m_eResult != EResult.k_EResultOK)
             {
-                error += (ModInfo_QueryFailed + queryResult.m_eResult.ToLocalizedString() + "\n");
+                error += ($"{ModInfo_QueryFail} {queryResult.m_eResult.ToLocalizedString()} ({queryResult.m_eResult})\n");
             }
 
             if (queryResult.m_nConsumerAppID.m_AppId != UploadHelper.CSL_APPID)

@@ -438,7 +438,4 @@
   <data name="k_EResultTooManyPending" xml:space="preserve">
     <value>There are too many of this thing pending already</value>
   </data>
-  <data name="Upload_ChooseContentFolder_Cansel" xml:space="preserve">
-    <value />
-  </data>
 </root>
