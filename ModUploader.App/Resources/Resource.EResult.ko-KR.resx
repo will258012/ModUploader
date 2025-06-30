@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="k_EResultOK" xml:space="preserve">
+    <value>완료</value>
+  </data>
+  <data name="k_EResultFail" xml:space="preserve">
+    <value>Generic failure</value>
+  </data>
+  <data name="k_EResultNoConnection" xml:space="preserve">
+    <value>Your Steam client doesn't have a connection to the back-end</value>
+  </data>
+  <data name="k_EResultInvalidPassword" xml:space="preserve">
+    <value>Password/ticket is invalid</value>
+  </data>
+  <data name="k_EResultLoggedInElsewhere" xml:space="preserve">
+    <value>The user is logged in elsewhere</value>
+  </data>
+  <data name="k_EResultInvalidProtocolVer" xml:space="preserve">
+    <value>프로토콜 버전이 잘못됨</value>
+  </data>
+  <data name="k_EResultInvalidParam" xml:space="preserve">
+    <value>매개변수가 잘못됨</value>
+  </data>
+  <data name="k_EResultFileNotFound" xml:space="preserve">
+    <value>파일을 찾을 수 없음</value>
+  </data>
+  <data name="k_EResultBusy" xml:space="preserve">
+    <value>Called method is busy - action not taken</value>
+  </data>
+  <data name="k_EResultInvalidState" xml:space="preserve">
+    <value>Called object was in an invalid state</value>
+  </data>
+  <data name="k_EResultInvalidName" xml:space="preserve">
+    <value>The name was invalid</value>
+  </data>
+  <data name="k_EResultInvalidEmail" xml:space="preserve">
+    <value>The email was invalid</value>
+  </data>
+  <data name="k_EResultDuplicateName" xml:space="preserve">
+    <value>The name is not unique</value>
+  </data>
+  <data name="k_EResultAccessDenied" xml:space="preserve">
+    <value>Access is denied</value>
+  </data>
+  <data name="k_EResultTimeout" xml:space="preserve">
+    <value>Operation timed out</value>
+  </data>
+  <data name="k_EResultBanned" xml:space="preserve">
+    <value>The user is VAC2 banned</value>
+  </data>
+  <data name="k_EResultAccountNotFound" xml:space="preserve">
+    <value>Account not found</value>
+  </data>
+  <data name="k_EResultInvalidSteamID" xml:space="preserve">
+    <value>The Steam ID was invalid</value>
+  </data>
+  <data name="k_EResultServiceUnavailable" xml:space="preserve">
+    <value>The requested service is currently unavailable</value>
+  </data>
+  <data name="k_EResultNotLoggedOn" xml:space="preserve">
+    <value>The user is not logged on</value>
+  </data>
+  <data name="k_EResultPending" xml:space="preserve">
+    <value>Request is pending, it may be in process or waiting on third party</value>
+  </data>
+  <data name="k_EResultEncryptionFailure" xml:space="preserve">
+    <value>Encryption or Decryption failed</value>
+  </data>
+  <data name="k_EResultInsufficientPrivilege" xml:space="preserve">
+    <value>Insufficient privilege</value>
+  </data>
+  <data name="k_EResultLimitExceeded" xml:space="preserve">
+    <value>Too much of a good thing</value>
+  </data>
+  <data name="k_EResultRevoked" xml:space="preserve">
+    <value>Access has been revoked (used for revoked guest passes)</value>
+  </data>
+  <data name="k_EResultExpired" xml:space="preserve">
+    <value>License/Guest pass the user is trying to access is expired</value>
+  </data>
+  <data name="k_EResultAlreadyRedeemed" xml:space="preserve">
+    <value>Guest pass has already been redeemed by account, cannot be used again</value>
+  </data>
+  <data name="k_EResultDuplicateRequest" xml:space="preserve">
+    <value>The request is a duplicate and the action has already occurred in the past, ignored this time</value>
+  </data>
+  <data name="k_EResultAlreadyOwned" xml:space="preserve">
+    <value>All the games in this guest pass redemption request are already owned by the user</value>
+  </data>
+  <data name="k_EResultIPNotFound" xml:space="preserve">
+    <value>IP address not found</value>
+  </data>
+  <data name="k_EResultPersistFailed" xml:space="preserve">
+    <value>Failed to write change to the data store</value>
+  </data>
+  <data name="k_EResultLockingFailed" xml:space="preserve">
+    <value>Failed to acquire access lock for this operation</value>
+  </data>
+  <data name="k_EResultLogonSessionReplaced" xml:space="preserve">
+    <value>The logon session has been replaced</value>
+  </data>
+  <data name="k_EResultConnectFailed" xml:space="preserve">
+    <value>Failed to connect</value>
+  </data>
+  <data name="k_EResultHandshakeFailed" xml:space="preserve">
+    <value>The authentication handshake has failed</value>
+  </data>
+  <data name="k_EResultIOFailure" xml:space="preserve">
+    <value>There has been a generic IO failure</value>
+  </data>
+  <data name="k_EResultRemoteDisconnect" xml:space="preserve">
+    <value>The remote server has disconnected</value>
+  </data>
+  <data name="k_EResultShoppingCartNotFound" xml:space="preserve">
+    <value>Failed to find the shopping cart requested</value>
+  </data>
+  <data name="k_EResultBlocked" xml:space="preserve">
+    <value>A user blocked the action</value>
+  </data>
+  <data name="k_EResultIgnored" xml:space="preserve">
+    <value>The target is ignoring sender</value>
+  </data>
+  <data name="k_EResultNoMatch" xml:space="preserve">
+    <value>Nothing matching the request found</value>
+  </data>
+  <data name="k_EResultAccountDisabled" xml:space="preserve">
+    <value>The account is disabled</value>
+  </data>
+  <data name="k_EResultServiceReadOnly" xml:space="preserve">
+    <value>The service is in a read-only state</value>
+  </data>
+  <data name="k_EResultAccountNotFeatured" xml:space="preserve">
+    <value>The account is not featured</value>
+  </data>
+  <data name="k_EResultAdministratorOK" xml:space="preserve">
+    <value>Administrator privileges granted</value>
+  </data>
+  <data name="k_EResultContentVersion" xml:space="preserve">
+    <value>Content version mismatch</value>
+  </data>
+  <data name="k_EResultTryAnotherCM" xml:space="preserve">
+    <value>Try another Content Manager</value>
+  </data>
+  <data name="k_EResultPasswordRequiredToKickSession" xml:space="preserve">
+    <value>Failed to authenticate password for a session kick</value>
+  </data>
+  <data name="k_EResultAlreadyLoggedInElsewhere" xml:space="preserve">
+    <value>User is already logged in elsewhere</value>
+  </data>
+  <data name="k_EResultSuspended" xml:space="preserve">
+    <value>Long running operation has suspended/paused (e.g. content download)</value>
+  </data>
+  <data name="k_EResultCancelled" xml:space="preserve">
+    <value>Operation has been canceled, typically by user (e.g. content download)</value>
+  </data>
+  <data name="k_EResultDataCorruption" xml:space="preserve">
+    <value>Operation canceled because data is ill formed or unrecoverable</value>
+  </data>
+  <data name="k_EResultDiskFull" xml:space="preserve">
+    <value>Operation canceled - not enough disk space</value>
+  </data>
+  <data name="k_EResultRemoteCallFailed" xml:space="preserve">
+    <value>The remote or IPC call has failed</value>
+  </data>
+  <data name="k_EResultPasswordUnset" xml:space="preserve">
+    <value>Password could not be verified as it's unset server side</value>
+  </data>
+  <data name="k_EResultExternalAccountUnlinked" xml:space="preserve">
+    <value>External account (PSN, Facebook...) is not linked to a Steam account</value>
+  </data>
+  <data name="k_EResultPSNTicketInvalid" xml:space="preserve">
+    <value>PSN ticket was invalid</value>
+  </data>
+  <data name="k_EResultExternalAccountAlreadyLinked" xml:space="preserve">
+    <value>External account (PSN, Facebook...) is already linked to some other account, must explicitly request to replace/delete the link first</value>
+  </data>
+  <data name="k_EResultRemoteFileConflict" xml:space="preserve">
+    <value>The sync cannot resume due to a conflict between the local and remote files</value>
+  </data>
+  <data name="k_EResultIllegalPassword" xml:space="preserve">
+    <value>The requested new password is not allowed</value>
+  </data>
+  <data name="k_EResultSameAsPreviousValue" xml:space="preserve">
+    <value>New value is the same as the old one (used for secret question and answer)</value>
+  </data>
+  <data name="k_EResultAccountLogonDenied" xml:space="preserve">
+    <value>Account login denied due to 2nd factor authentication failure</value>
+  </data>
+  <data name="k_EResultCannotUseOldPassword" xml:space="preserve">
+    <value>The requested new password is not legal</value>
+  </data>
+  <data name="k_EResultInvalidLoginAuthCode" xml:space="preserve">
+    <value>Account login denied due to auth code invalid</value>
+  </data>
+  <data name="k_EResultAccountLogonDeniedNoMail" xml:space="preserve">
+    <value>Account login denied due to 2nd factor auth failure - and no mail has been sent</value>
+  </data>
+  <data name="k_EResultHardwareNotCapableOfIPT" xml:space="preserve">
+    <value>The users hardware does not support Intel's Identity Protection Technology (IPT)</value>
+  </data>
+  <data name="k_EResultIPTInitError" xml:space="preserve">
+    <value>Intel's Identity Protection Technology (IPT) has failed to initialize</value>
+  </data>
+  <data name="k_EResultParentalControlRestricted" xml:space="preserve">
+    <value>Operation failed due to parental control restrictions for current user</value>
+  </data>
+  <data name="k_EResultFacebookQueryError" xml:space="preserve">
+    <value>Facebook query returned an error</value>
+  </data>
+  <data name="k_EResultExpiredLoginAuthCode" xml:space="preserve">
+    <value>Account login denied due to an expired auth code</value>
+  </data>
+  <data name="k_EResultIPLoginRestrictionFailed" xml:space="preserve">
+    <value>The login failed due to an IP restriction</value>
+  </data>
+  <data name="k_EResultAccountLockedDown" xml:space="preserve">
+    <value>The current user's account is currently locked for use, likely due to hijacking and pending ownership verification</value>
+  </data>
+  <data name="k_EResultAccountLogonDeniedVerifiedEmailRequired" xml:space="preserve">
+    <value>The logon failed because the account's email is not verified</value>
+  </data>
+  <data name="k_EResultNoMatchingURL" xml:space="preserve">
+    <value>There is no URL matching the provided values</value>
+  </data>
+  <data name="k_EResultBadResponse" xml:space="preserve">
+    <value>Bad Response due to a Parse failure, missing field, etc.</value>
+  </data>
+  <data name="k_EResultRequirePasswordReEntry" xml:space="preserve">
+    <value>The user cannot complete the action until they re-enter their password</value>
+  </data>
+  <data name="k_EResultValueOutOfRange" xml:space="preserve">
+    <value>The value entered is outside the acceptable range</value>
+  </data>
+  <data name="k_EResultUnexpectedError" xml:space="preserve">
+    <value>Something happened that we didn't expect to ever happen</value>
+  </data>
+  <data name="k_EResultDisabled" xml:space="preserve">
+    <value>The requested service has been configured to be unavailable</value>
+  </data>
+  <data name="k_EResultInvalidCEGSubmission" xml:space="preserve">
+    <value>The files submitted to the CEG server are not valid</value>
+  </data>
+  <data name="k_EResultRestrictedDevice" xml:space="preserve">
+    <value>The device being used is not allowed to perform this action</value>
+  </data>
+  <data name="k_EResultRegionLocked" xml:space="preserve">
+    <value>The action could not be completed because it is region restricted</value>
+  </data>
+  <data name="k_EResultRateLimitExceeded" xml:space="preserve">
+    <value>Temporary rate limit exceeded, try again later, different from k_EResultLimitExceeded which may be permanent</value>
+  </data>
+  <data name="k_EResultAccountLoginDeniedNeedTwoFactor" xml:space="preserve">
+    <value>Need two-factor code to login</value>
+  </data>
+  <data name="k_EResultItemDeleted" xml:space="preserve">
+    <value>The item we are trying to access has been deleted</value>
+  </data>
+  <data name="k_EResultAccountLoginDeniedThrottle" xml:space="preserve">
+    <value>Login attempt failed, try to throttle response to possible attacker</value>
+  </data>
+  <data name="k_EResultTwoFactorCodeMismatch" xml:space="preserve">
+    <value>Two-factor authentication (Steam Guard) code is incorrect</value>
+  </data>
+  <data name="k_EResultTwoFactorActivationCodeMismatch" xml:space="preserve">
+    <value>The activation code for two-factor authentication (Steam Guard) didn't match</value>
+  </data>
+  <data name="k_EResultAccountAssociatedToMultiplePartners" xml:space="preserve">
+    <value>The current account has been associated with multiple partners</value>
+  </data>
+  <data name="k_EResultNotModified" xml:space="preserve">
+    <value>The data has not been modified</value>
+  </data>
+  <data name="k_EResultNoMobileDevice" xml:space="preserve">
+    <value>The account does not have a mobile device associated with it</value>
+  </data>
+  <data name="k_EResultTimeNotSynced" xml:space="preserve">
+    <value>The time presented is out of range or tolerance</value>
+  </data>
+  <data name="k_EResultSmsCodeFailed" xml:space="preserve">
+    <value>SMS code failure - no match, none pending, etc.</value>
+  </data>
+  <data name="k_EResultAccountLimitExceeded" xml:space="preserve">
+    <value>Too many accounts accessing this resource</value>
+  </data>
+  <data name="k_EResultAccountActivityLimitExceeded" xml:space="preserve">
+    <value>Too many changes to this account</value>
+  </data>
+  <data name="k_EResultPhoneActivityLimitExceeded" xml:space="preserve">
+    <value>Too many changes to this phone</value>
+  </data>
+  <data name="k_EResultRefundToWallet" xml:space="preserve">
+    <value>Cannot refund to payment method, must use wallet</value>
+  </data>
+  <data name="k_EResultEmailSendFailure" xml:space="preserve">
+    <value>Cannot send an email</value>
+  </data>
+  <data name="k_EResultNotSettled" xml:space="preserve">
+    <value>Can't perform operation until payment has settled</value>
+  </data>
+  <data name="k_EResultNeedCaptcha" xml:space="preserve">
+    <value>The user needs to provide a valid captcha</value>
+  </data>
+  <data name="k_EResultGSLTDenied" xml:space="preserve">
+    <value>A game server login token owned by this token's owner has been banned</value>
+  </data>
+  <data name="k_EResultGSOwnerDenied" xml:space="preserve">
+    <value>Game server owner is denied for some other reason such as account locked, community ban, VAC ban, missing phone, etc.</value>
+  </data>
+  <data name="k_EResultInvalidItemType" xml:space="preserve">
+    <value>The type of thing we were requested to act on is invalid</value>
+  </data>
+  <data name="k_EResultIPBanned" xml:space="preserve">
+    <value>The IP address has been banned from taking this action</value>
+  </data>
+  <data name="k_EResultGSLTExpired" xml:space="preserve">
+    <value>This Game Server Login Token (GSLT) has expired from disuse; it can be reset for use</value>
+  </data>
+  <data name="k_EResultInsufficientFunds" xml:space="preserve">
+    <value>User doesn't have enough wallet funds to complete the action</value>
+  </data>
+  <data name="k_EResultTooManyPending" xml:space="preserve">
+    <value>There are too many of this thing pending already</value>
+  </data>
+</root>
