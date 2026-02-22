@@ -1,0 +1,12 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="ModUploader.App/ModUploader.App.csproj">
+    <Platform Project="x64" />
+    <Deploy />
+  </Project>
+    <Project Path="ModUploader.Mod/ModUploader.Mod.csproj">
+      <Platform Project="x64" />
+    </Project>
+</Solution>

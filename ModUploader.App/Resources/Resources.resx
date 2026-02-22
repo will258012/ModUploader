@@ -117,90 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Command_Error" xml:space="preserve">
-    <value>Invalid or missing parameters.</value>
-  </data>
-  <data name="Command_Help" xml:space="preserve">
-    <value>Available arguments:
-"-help" Show this part
-"-update &lt;id&gt; &lt;content_path&gt;  [&lt;previewImage_path&gt; (Ignoring this item will not change the preview image)]" Update a mod
-"-newmod &lt;title&gt; &lt;content_path&gt; [&lt;previewImage_path&gt; (Ignore this will use default preview image)]" Create a new mod</value>
-  </data>
-  <data name="Main_Message" xml:space="preserve">
-    <value>Please enter your mod's workshop ID or URL to update your mod, or vaild operation:
-- "mymod" show your mods in a list
-- "newmod" create a new mod
-- "exit" exit
-- Only want to update the preview image? Attach "-updatePreviewOnly" after the ID or URL</value>
-  </data>
   <data name="Main_CreateFail" xml:space="preserve">
-    <value>Failed to create mod:</value>
-  </data>
-  <data name="Main_InvalidInput" xml:space="preserve">
-    <value>Invalid input. Please try again.</value>
-  </data>
-  <data name="Main_MultiInstances" xml:space="preserve">
-    <value>App is already running.</value>
-  </data>
-  <data name="Main_NewMod_EnterDescription" xml:space="preserve">
-    <value>Please enter your new mod's description (optional):</value>
-  </data>
-  <data name="Main_NewMod_EnterTitle" xml:space="preserve">
-    <value>Please enter your new mod's title (cannot be empty):</value>
+    <value>Failed to create item:</value>
   </data>
   <data name="Main_UpdateFail" xml:space="preserve">
     <value>Failed to update mod:</value>
   </data>
-  <data name="Upload_ChooseContentFolder_Title" xml:space="preserve">
-    <value>Please choose your mod content folder</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Newmod" xml:space="preserve">
-    <value>You canceled the selection. Will use the default image.</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Update" xml:space="preserve">
-    <value>You canceled the selection. Will not change the image.</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Title" xml:space="preserve">
-    <value>Please choose the preview image</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Newmod" xml:space="preserve">
-    <value>Do you want to provide a preview image?</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Update" xml:space="preserve">
-    <value>Do you want to update the preview image?</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_Text_NewMod" xml:space="preserve">
-    <value>Click "Yes" to select the image, or click "No" to skip and use the default image.</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_Text_Update" xml:space="preserve">
-    <value>Click "Yes" to select the image, or click "No" to skip without changing the image.</value>
-  </data>
-  <data name="Upload_CreateSuccess" xml:space="preserve">
-    <value>Workshop item {0} is successfully created.</value>
-  </data>
-  <data name="Upload_Creating" xml:space="preserve">
-    <value>Creating workshop item, please wait...</value>
-  </data>
-  <data name="Upload_GetModList_Fetching" xml:space="preserve">
-    <value>Fetching your mod list, please wait...</value>
-  </data>
-  <data name="Upload_GetModList_NoMod" xml:space="preserve">
-    <value>You don't seem to have any mods...</value>
-  </data>
   <data name="Upload_Success" xml:space="preserve">
-    <value>Successfully upload! Opening workshop page for you...</value>
+    <value>Successfully upload!</value>
   </data>
   <data name="Upload_Uploading" xml:space="preserve">
     <value>Uploading...</value>
-  </data>
-  <data name="Main_Update_Getinfo" xml:space="preserve">
-    <value>Getting mod info...</value>
-  </data>
-  <data name="Main_Update_WillUpdate" xml:space="preserve">
-    <value>Mod will update:</value>
-  </data>
-  <data name="Main_DirectoryNotFound" xml:space="preserve">
-    <value>Invalid content path or/and preview image path.</value>
   </data>
   <data name="ModInfo_QueryFail" xml:space="preserve">
     <value>Query Failed:</value>
@@ -208,25 +135,94 @@
   <data name="ModInfo_NotCSL" xml:space="preserve">
     <value>Item does not appear to be a Cities: Skylines workshop item:</value>
   </data>
-  <data name="ModInfo_NotMod" xml:space="preserve">
-    <value>Item do not appear to be a mod:</value>
-  </data>
   <data name="ModInfo_NotAuthor" xml:space="preserve">
     <value>Item does not appear to yours:</value>
   </data>
-  <data name="Upload_ChooseContentFolder_Cancel" xml:space="preserve">
-    <value>You canceled the selection.</value>
-  </data>
-  <data name="Upload_NoDll" xml:space="preserve">
-    <value>There must be at least one DLL file in the given content directory.</value>
-  </data>
-  <data name="Upload_Retry" xml:space="preserve">
-    <value>Retrying...</value>
-  </data>
-  <data name="Main_CheckingInternet" xml:space="preserve">
-    <value>Checking your internet connection to workshop, please wait...</value>
+  <data name="Retry" xml:space="preserve">
+    <value>Retry</value>
   </data>
   <data name="Main_InitFail" xml:space="preserve">
     <value>Failed to initialize Steam API.</value>
+  </data>
+  <data name="Home_Welcome" xml:space="preserve">
+    <value>Welcome, {0}!</value>
+  </data>
+  <data name="Home_Create" xml:space="preserve">
+    <value>Create Item</value>
+  </data>
+  <data name="Home_Update" xml:space="preserve">
+    <value>Update Item</value>
+  </data>
+  <data name="Edit_SelectType" xml:space="preserve">
+    <value>Select Item Type</value>
+  </data>
+  <data name="Edit_Required" xml:space="preserve">
+    <value>This field is required.</value>
+  </data>
+  <data name="Edit_Name" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="Edit_Description" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="Edit_Changelog" xml:space="preserve">
+    <value>Changelog:</value>
+  </data>
+  <data name="Edit_ContentFolder" xml:space="preserve">
+    <value>Content Folder:</value>
+  </data>
+  <data name="Edit_Browse" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="Edit_UpdatePreviewOnly" xml:space="preserve">
+    <value>Update Preview Image Only</value>
+  </data>
+  <data name="Edit_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Edit_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Edit_ConfirmUpload" xml:space="preserve">
+    <value>Please confirm that you have reviewed all details before uploading.</value>
+  </data>
+  <data name="ModInfo_NotMod" xml:space="preserve">
+    <value>Item does not appear to be a mod:</value>
+  </data>
+  <data name="Select_Title" xml:space="preserve">
+    <value>Select the items to be updated</value>
+  </data>
+  <data name="Select_SearchBox" xml:space="preserve">
+    <value>Search for Workshop ID or name</value>
+  </data>
+  <data name="Select_NoResults" xml:space="preserve">
+    <value>No results found.</value>
+  </data>
+  <data name="Select_NoItems" xml:space="preserve">
+    <value>You don't seem to have any items...</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Edit_ConfirmCancel" xml:space="preserve">
+    <value>Edits will not be saved. Continue?</value>
+  </data>
+  <data name="Edit_PreviewImage_Tooltip" xml:space="preserve">
+    <value>Click to change the preview image</value>
+  </data>
+  <data name="Edit_CustomTags" xml:space="preserve">
+    <value>Custom Tags:</value>
+  </data>
+  <data name="Edit_CustomTags_PlaceHolder" xml:space="preserve">
+    <value>Press Enter to add</value>
+  </data>
+  <data name="Upload_OpenLog" xml:space="preserve">
+    <value>Open log file</value>
   </data>
 </root>

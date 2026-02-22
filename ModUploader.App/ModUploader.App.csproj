@@ -1,70 +1,82 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{1C6C602F-B493-41B5-8D10-B66B64944F92}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net9-windows</TargetFramework>
-	<Platforms>x64</Platforms>
-	<PlatformIdentifier>win-x64</PlatformIdentifier>
-    <ImplicitUsings>enable</ImplicitUsings>
-	<Nullable>enable</Nullable>
-	<LangVersion>latest</LangVersion>
-	<PublishSingleFile>True</PublishSingleFile>
-	<SelfContained>False</SelfContained>
-	<SignAssembly>True</SignAssembly>
-	<StartupObject>ModUploader.Program</StartupObject>
-	<ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
-	<ApplicationManifest>app.manifest</ApplicationManifest>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x64</Platforms>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <UseWinUI>true</UseWinUI>
+    <WinUISDKReferences>false</WinUISDKReferences>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <Nullable>annotations</Nullable>
+	<WindowsPackageType>None</WindowsPackageType>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<PublishReadyToRun>true</PublishReadyToRun>
+	<PublishSingleFile>true</PublishSingleFile>
+	<SelfContained>false</SelfContained>
+	<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	<PublishTrimmed>false</PublishTrimmed>
+	<PublishAot>false</PublishAot>
+	<AssemblyName>$(RootNameSpace)</AssemblyName>
+	<AssemblyTitle>$(Title)</AssemblyTitle>
   </PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-		<DebugType>none</DebugType>
-	</PropertyGroup>
-
-	<ItemGroup>
-    <None Remove="Resources\PreviewImage.png" />
+  <ItemGroup>
+    <None Remove="Pages\Splash.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\icon.ico" />
   </ItemGroup>
 
-	<ItemGroup>
-	  <Content Include="Resources\Icon.ico" />
-	</ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="costura_win_x64\steam_api64.dll" />
-    <EmbeddedResource Include="Resources\PreviewImage.png" />
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <!--
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-	<PackageReference Include="Fody" Version="6.9.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-	<PackageReference Include="Costura.Fody" Version="6.0.0">
-		<PrivateAssets>all</PrivateAssets>
-		<IncludeAssets>compile; runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
-    <PackageReference Include="NLog" Version="5.3.4" />
-    <PackageReference Include="ShellProgressBar" Version="5.2.0" />
-    <PackageReference Include="Steamworks.NET" Version="2024.8.0" />
-    <PackageReference Include="WindowsAPICodePack" Version="8.0.6" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.TokenizingTextBox" Version="8.2.251219" />
+    <PackageReference Include="Lib.Harmony" Version="2.4.2" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260209005" />
+    <PackageReference Include="NLog" Version="6.1.0" />
   </ItemGroup>
   <ItemGroup>
-	  <EmbeddedResource Update="Resources\Resource.EResult.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resource.EResult.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="Resources\Resources.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="Resources\Resources.zh-cn.resx">
-	  </EmbeddedResource>
+    <Reference Include="Facepunch.Steamworks.Win64">
+      <HintPath>References\Facepunch.Steamworks.Win64.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Update="steam_api64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+	  <Page Update="Pages\*.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
+		<Page Update="MainWindow.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+</ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Microsoft.UI.Xaml" />
     <Using Include="ModUploader.Resources.Resources">
       <Static>True</Static>
     </Using>
-    <Using Include="NLog" />
     <Using Include="Steamworks" />
-    <Using Include="System.Reflection" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\Resource.EResult.Designer.cs">
@@ -79,12 +91,34 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Update="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Content Update="Assets\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Resource.EResult.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.EResult.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup Label="Globals" />
+
+  <!--
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
 	<Target Name="DeployToModDirectory" AfterTargets="Publish">
 		<Copy SourceFiles="$(PublishDir)\$(TargetName).exe" DestinationFiles="$(AppDeployDir)\$(RootNameSpace).exe" />
-		<Copy SourceFiles="NLog.config" DestinationFiles="$(AppDeployDir)\NLog.config" />
 	</Target>
 </Project>

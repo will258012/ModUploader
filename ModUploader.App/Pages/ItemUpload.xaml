@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="ModUploader.Pages.ItemUpload"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ModUploader.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="using:ModUploader.Resources"
+    mc:Ignorable="d">
+    
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+            <ProgressRing x:Name="UploadProgressRing" Width="100" Height="100" IsIndeterminate="False"/>
+            <TextBlock x:Name="StatusText" Text="{x:Bind res:Resources.Upload_Uploading, Mode=OneWay}"  FontSize="20" HorizontalAlignment="Center"/>
+            <StackPanel x:Name="ResultPanel" Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <TextBlock x:Name="ResultIcon"
+                               FontFamily="Segoe MDL2 Assets"
+                               FontSize="32"
+                               VerticalAlignment="Center"/>
+                    <TextBlock x:Name="ResultMessage" FontSize="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                    <Button Click="BtnBack_Click" Visibility="Visible">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <SymbolIcon Symbol="Back"/>
+                            <TextBlock Text="{x:Bind res:Resources.Back, Mode=OneWay}"/>
+                        </StackPanel> 
+                    </Button>
+                    <Button x:Name="BtnRetry" Click="BtnRetry_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <SymbolIcon Symbol="Refresh"/>
+                            <TextBlock Text="{x:Bind res:Resources.Retry, Mode=OneWay}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="BtnOpenLog" Click="BtnOpenLog_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <SymbolIcon Symbol="Document"/>
+                            <TextBlock Text="{x:Bind res:Resources.Upload_OpenLog, Mode=OneWay}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

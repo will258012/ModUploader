@@ -7,7 +7,7 @@ namespace ModUploader
     public class Mod : ModBase
     {
         public override string BaseName => "Mod Uploader";
-        public override string Description => "Upload your mods to workshop easily and quickly without launching the game";
+        public override string Description => "Upload your mods/assets to workshop easily and quickly without launching the game";
 
         public override void OnEnabled()
         {

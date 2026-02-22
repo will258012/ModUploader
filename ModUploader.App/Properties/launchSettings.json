@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ModUploader (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ModUploader (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -19,10 +19,10 @@ namespace ModUploader.Resources {
     // 类通过类似于 ResGen 或 Visual Studio 的工具自动生成的。
     // 若要添加或移除成员，请编辑 .ResX 文件，然后重新运行 ResGen
     // (以 /str 作为命令选项)，或重新生成 VS 项目。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ModUploader.Resources {
         ///   返回此类使用的缓存的 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ModUploader.Resources.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace ModUploader.Resources {
         ///   使用此强类型资源类的所有资源查找执行重写。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,133 +61,207 @@ namespace ModUploader.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Invalid or missing parameters. 的本地化字符串。
+        ///   查找类似 Back 的本地化字符串。
         /// </summary>
-        internal static string Command_Error {
+        public static string Back {
             get {
-                return ResourceManager.GetString("Command_Error", resourceCulture);
+                return ResourceManager.GetString("Back", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Available arguments:
-        ///&quot;-help&quot; Show this part
-        ///&quot;-update &lt;id&gt; &lt;content_path&gt;  [&lt;previewImage_path&gt; (Ignoring this item will not change the preview image)]&quot; Update a mod
-        ///&quot;-newmod &lt;title&gt; &lt;content_path&gt; [&lt;previewImage_path&gt; (Ignore this will use default preview image)]&quot; Create a new mod 的本地化字符串。
+        ///   查找类似 Cancel 的本地化字符串。
         /// </summary>
-        internal static string Command_Help {
+        public static string Cancel {
             get {
-                return ResourceManager.GetString("Command_Help", resourceCulture);
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Checking your internet connection to workshop, please wait... 的本地化字符串。
+        ///   查找类似 Browse... 的本地化字符串。
         /// </summary>
-        internal static string Main_CheckingInternet {
+        public static string Edit_Browse {
             get {
-                return ResourceManager.GetString("Main_CheckingInternet", resourceCulture);
+                return ResourceManager.GetString("Edit_Browse", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Failed to create mod: 的本地化字符串。
+        ///   查找类似 Changelog: 的本地化字符串。
         /// </summary>
-        internal static string Main_CreateFail {
+        public static string Edit_Changelog {
+            get {
+                return ResourceManager.GetString("Edit_Changelog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Confirm 的本地化字符串。
+        /// </summary>
+        public static string Edit_Confirm {
+            get {
+                return ResourceManager.GetString("Edit_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Edits will not be saved. Continue? 的本地化字符串。
+        /// </summary>
+        public static string Edit_ConfirmCancel {
+            get {
+                return ResourceManager.GetString("Edit_ConfirmCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please confirm that you have reviewed all details before uploading. 的本地化字符串。
+        /// </summary>
+        public static string Edit_ConfirmUpload {
+            get {
+                return ResourceManager.GetString("Edit_ConfirmUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Content Folder: 的本地化字符串。
+        /// </summary>
+        public static string Edit_ContentFolder {
+            get {
+                return ResourceManager.GetString("Edit_ContentFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Custom Tags: 的本地化字符串。
+        /// </summary>
+        public static string Edit_CustomTags {
+            get {
+                return ResourceManager.GetString("Edit_CustomTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Press Enter to add 的本地化字符串。
+        /// </summary>
+        public static string Edit_CustomTags_PlaceHolder {
+            get {
+                return ResourceManager.GetString("Edit_CustomTags_PlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Description: 的本地化字符串。
+        /// </summary>
+        public static string Edit_Description {
+            get {
+                return ResourceManager.GetString("Edit_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Name: 的本地化字符串。
+        /// </summary>
+        public static string Edit_Name {
+            get {
+                return ResourceManager.GetString("Edit_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Click to change the preview image 的本地化字符串。
+        /// </summary>
+        public static string Edit_PreviewImage_Tooltip {
+            get {
+                return ResourceManager.GetString("Edit_PreviewImage_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 This field is required. 的本地化字符串。
+        /// </summary>
+        public static string Edit_Required {
+            get {
+                return ResourceManager.GetString("Edit_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Select Item Type 的本地化字符串。
+        /// </summary>
+        public static string Edit_SelectType {
+            get {
+                return ResourceManager.GetString("Edit_SelectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Update Preview Image Only 的本地化字符串。
+        /// </summary>
+        public static string Edit_UpdatePreviewOnly {
+            get {
+                return ResourceManager.GetString("Edit_UpdatePreviewOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Upload 的本地化字符串。
+        /// </summary>
+        public static string Edit_Upload {
+            get {
+                return ResourceManager.GetString("Edit_Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Create Item 的本地化字符串。
+        /// </summary>
+        public static string Home_Create {
+            get {
+                return ResourceManager.GetString("Home_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Update Item 的本地化字符串。
+        /// </summary>
+        public static string Home_Update {
+            get {
+                return ResourceManager.GetString("Home_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Welcome, {0}! 的本地化字符串。
+        /// </summary>
+        public static string Home_Welcome {
+            get {
+                return ResourceManager.GetString("Home_Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Failed to create item: 的本地化字符串。
+        /// </summary>
+        public static string Main_CreateFail {
             get {
                 return ResourceManager.GetString("Main_CreateFail", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Invalid content path or/and preview image path. 的本地化字符串。
-        /// </summary>
-        internal static string Main_DirectoryNotFound {
-            get {
-                return ResourceManager.GetString("Main_DirectoryNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Failed to initialize Steam API. 的本地化字符串。
         /// </summary>
-        internal static string Main_InitFail {
+        public static string Main_InitFail {
             get {
                 return ResourceManager.GetString("Main_InitFail", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Invalid input. Please try again. 的本地化字符串。
-        /// </summary>
-        internal static string Main_InvalidInput {
-            get {
-                return ResourceManager.GetString("Main_InvalidInput", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Please enter your mod&apos;s workshop ID or URL to update your mod, or vaild operation:
-        ///- &quot;mymod&quot; show your mods in a list
-        ///- &quot;newmod&quot; create a new mod
-        ///- &quot;exit&quot; exit
-        ///- Only want to update the preview image? Attach &quot;-updatePreviewOnly&quot; after the ID or URL 的本地化字符串。
-        /// </summary>
-        internal static string Main_Message {
-            get {
-                return ResourceManager.GetString("Main_Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 App is already running. 的本地化字符串。
-        /// </summary>
-        internal static string Main_MultiInstances {
-            get {
-                return ResourceManager.GetString("Main_MultiInstances", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Please enter your new mod&apos;s description (optional): 的本地化字符串。
-        /// </summary>
-        internal static string Main_NewMod_EnterDescription {
-            get {
-                return ResourceManager.GetString("Main_NewMod_EnterDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Please enter your new mod&apos;s title (cannot be empty): 的本地化字符串。
-        /// </summary>
-        internal static string Main_NewMod_EnterTitle {
-            get {
-                return ResourceManager.GetString("Main_NewMod_EnterTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Getting mod info... 的本地化字符串。
-        /// </summary>
-        internal static string Main_Update_Getinfo {
-            get {
-                return ResourceManager.GetString("Main_Update_Getinfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Mod will update: 的本地化字符串。
-        /// </summary>
-        internal static string Main_Update_WillUpdate {
-            get {
-                return ResourceManager.GetString("Main_Update_WillUpdate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Failed to update mod: 的本地化字符串。
         /// </summary>
-        internal static string Main_UpdateFail {
+        public static string Main_UpdateFail {
             get {
                 return ResourceManager.GetString("Main_UpdateFail", resourceCulture);
             }
@@ -196,7 +270,7 @@ namespace ModUploader.Resources {
         /// <summary>
         ///   查找类似 Item does not appear to yours: 的本地化字符串。
         /// </summary>
-        internal static string ModInfo_NotAuthor {
+        public static string ModInfo_NotAuthor {
             get {
                 return ResourceManager.GetString("ModInfo_NotAuthor", resourceCulture);
             }
@@ -205,16 +279,16 @@ namespace ModUploader.Resources {
         /// <summary>
         ///   查找类似 Item does not appear to be a Cities: Skylines workshop item: 的本地化字符串。
         /// </summary>
-        internal static string ModInfo_NotCSL {
+        public static string ModInfo_NotCSL {
             get {
                 return ResourceManager.GetString("ModInfo_NotCSL", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Item do not appear to be a mod: 的本地化字符串。
+        ///   查找类似 Item does not appear to be a mod: 的本地化字符串。
         /// </summary>
-        internal static string ModInfo_NotMod {
+        public static string ModInfo_NotMod {
             get {
                 return ResourceManager.GetString("ModInfo_NotMod", resourceCulture);
             }
@@ -223,151 +297,79 @@ namespace ModUploader.Resources {
         /// <summary>
         ///   查找类似 Query Failed: 的本地化字符串。
         /// </summary>
-        internal static string ModInfo_QueryFail {
+        public static string ModInfo_QueryFail {
             get {
                 return ResourceManager.GetString("ModInfo_QueryFail", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 You canceled the selection. 的本地化字符串。
+        ///   查找类似 Retry 的本地化字符串。
         /// </summary>
-        internal static string Upload_ChooseContentFolder_Cancel {
+        public static string Retry {
             get {
-                return ResourceManager.GetString("Upload_ChooseContentFolder_Cancel", resourceCulture);
+                return ResourceManager.GetString("Retry", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Please choose your mod content folder 的本地化字符串。
+        ///   查找类似 You don&apos;t seem to have any items... 的本地化字符串。
         /// </summary>
-        internal static string Upload_ChooseContentFolder_Title {
+        public static string Select_NoItems {
             get {
-                return ResourceManager.GetString("Upload_ChooseContentFolder_Title", resourceCulture);
+                return ResourceManager.GetString("Select_NoItems", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 You canceled the selection. Will use the default image. 的本地化字符串。
+        ///   查找类似 No results found. 的本地化字符串。
         /// </summary>
-        internal static string Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Newmod {
+        public static string Select_NoResults {
             get {
-                return ResourceManager.GetString("Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Newmod", resourceCulture);
+                return ResourceManager.GetString("Select_NoResults", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 You canceled the selection. Will not change the image. 的本地化字符串。
+        ///   查找类似 Search for Workshop ID or name 的本地化字符串。
         /// </summary>
-        internal static string Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Update {
+        public static string Select_SearchBox {
             get {
-                return ResourceManager.GetString("Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Update", resourceCulture);
+                return ResourceManager.GetString("Select_SearchBox", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Please choose the preview image 的本地化字符串。
+        ///   查找类似 Select the items to be updated 的本地化字符串。
         /// </summary>
-        internal static string Upload_ChoosePreviewImageFile_OpenFileDialog_Title {
+        public static string Select_Title {
             get {
-                return ResourceManager.GetString("Upload_ChoosePreviewImageFile_OpenFileDialog_Title", resourceCulture);
+                return ResourceManager.GetString("Select_Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Do you want to provide a preview image? 的本地化字符串。
+        ///   查找类似 Settings 的本地化字符串。
         /// </summary>
-        internal static string Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Newmod {
+        public static string Settings_Title {
             get {
-                return ResourceManager.GetString("Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Newmod", resourceCulture);
+                return ResourceManager.GetString("Settings_Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Do you want to update the preview image? 的本地化字符串。
+        ///   查找类似 Open log file 的本地化字符串。
         /// </summary>
-        internal static string Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Update {
+        public static string Upload_OpenLog {
             get {
-                return ResourceManager.GetString("Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Update", resourceCulture);
+                return ResourceManager.GetString("Upload_OpenLog", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Click &quot;Yes&quot; to select the image, or click &quot;No&quot; to skip and use the default image. 的本地化字符串。
+        ///   查找类似 Successfully upload! 的本地化字符串。
         /// </summary>
-        internal static string Upload_ChoosePreviewImageFile_TaskDialog_Text_NewMod {
-            get {
-                return ResourceManager.GetString("Upload_ChoosePreviewImageFile_TaskDialog_Text_NewMod", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Click &quot;Yes&quot; to select the image, or click &quot;No&quot; to skip without changing the image. 的本地化字符串。
-        /// </summary>
-        internal static string Upload_ChoosePreviewImageFile_TaskDialog_Text_Update {
-            get {
-                return ResourceManager.GetString("Upload_ChoosePreviewImageFile_TaskDialog_Text_Update", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Workshop item {0} is successfully created. 的本地化字符串。
-        /// </summary>
-        internal static string Upload_CreateSuccess {
-            get {
-                return ResourceManager.GetString("Upload_CreateSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Creating workshop item, please wait... 的本地化字符串。
-        /// </summary>
-        internal static string Upload_Creating {
-            get {
-                return ResourceManager.GetString("Upload_Creating", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Fetching your mod list, please wait... 的本地化字符串。
-        /// </summary>
-        internal static string Upload_GetModList_Fetching {
-            get {
-                return ResourceManager.GetString("Upload_GetModList_Fetching", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 You don&apos;t seem to have any mods... 的本地化字符串。
-        /// </summary>
-        internal static string Upload_GetModList_NoMod {
-            get {
-                return ResourceManager.GetString("Upload_GetModList_NoMod", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 There must be at least one DLL file in the given content directory. 的本地化字符串。
-        /// </summary>
-        internal static string Upload_NoDll {
-            get {
-                return ResourceManager.GetString("Upload_NoDll", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Retrying... 的本地化字符串。
-        /// </summary>
-        internal static string Upload_Retry {
-            get {
-                return ResourceManager.GetString("Upload_Retry", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Successfully upload! Opening workshop page for you... 的本地化字符串。
-        /// </summary>
-        internal static string Upload_Success {
+        public static string Upload_Success {
             get {
                 return ResourceManager.GetString("Upload_Success", resourceCulture);
             }
@@ -376,7 +378,7 @@ namespace ModUploader.Resources {
         /// <summary>
         ///   查找类似 Uploading... 的本地化字符串。
         /// </summary>
-        internal static string Upload_Uploading {
+        public static string Upload_Uploading {
             get {
                 return ResourceManager.GetString("Upload_Uploading", resourceCulture);
             }

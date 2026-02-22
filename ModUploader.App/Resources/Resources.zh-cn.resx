@@ -117,90 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Command_Error" xml:space="preserve">
-    <value>参数无效或缺失。</value>
-  </data>
-  <data name="Command_Help" xml:space="preserve">
-    <value>可用参数：
-“-help” 显示本部分
-“-update &lt;id&gt; &lt;模组文件路径&gt; [&lt;预览图路径&gt;（忽略将不会更改预览图）]” 更新模组
-“-newmod &lt;标题&gt; &lt;模组文件路径&gt; [&lt;预览图路径&gt;（忽略将会使用默认预览图）]” 创建一个新模组</value>
-  </data>
-  <data name="Main_Message" xml:space="preserve">
-    <value>请输入模组的创意工坊 ID 或 URL 来更新你的模组，或者执行以下有效操作：
-- “mymod” 查看您的模组列表  
-- “newmod” 创建一个新模组  
-- “exit” 退出
-- 若你只想更新模组的预览图，可在ID或URL后附上 “-UpdatePreviewOnly”</value>
-  </data>
   <data name="Main_CreateFail" xml:space="preserve">
-    <value>创建模组失败：</value>
-  </data>
-  <data name="Main_InvalidInput" xml:space="preserve">
-    <value>输入无效。请重试。</value>
-  </data>
-  <data name="Main_MultiInstances" xml:space="preserve">
-    <value>应用程序已在运行。</value>
-  </data>
-  <data name="Main_NewMod_EnterDescription" xml:space="preserve">
-    <value>请输入新模组的描述（可选）：</value>
-  </data>
-  <data name="Main_NewMod_EnterTitle" xml:space="preserve">
-    <value>请输入新模组的标题（必填）：</value>
+    <value>创建物品失败：</value>
   </data>
   <data name="Main_UpdateFail" xml:space="preserve">
     <value>更新模组失败：</value>
   </data>
-  <data name="Upload_ChooseContentFolder_Title" xml:space="preserve">
-    <value>请选择模组内容文件夹</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Newmod" xml:space="preserve">
-    <value>选择已被取消，将使用默认图像。</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Update" xml:space="preserve">
-    <value>选择已被取消，将不会改变图像。</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Title" xml:space="preserve">
-    <value>请选择预览图</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Newmod" xml:space="preserve">
-    <value>是否提供预览图？</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Update" xml:space="preserve">
-    <value>是否要更新预览图？</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_Text_NewMod" xml:space="preserve">
-    <value>单击“是”选择图像，或单击“否”跳过以使用默认图像。</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_Text_Update" xml:space="preserve">
-    <value>单击“是”选择图像，或单击“否”跳过以不改变图像。</value>
-  </data>
-  <data name="Upload_CreateSuccess" xml:space="preserve">
-    <value>创意工坊物品 {0} 已成功创建。</value>
-  </data>
-  <data name="Upload_Creating" xml:space="preserve">
-    <value>正在创建创意工坊物品，请稍候……</value>
-  </data>
-  <data name="Upload_GetModList_Fetching" xml:space="preserve">
-    <value>正在获取你的模组列表，请稍候……</value>
-  </data>
-  <data name="Upload_GetModList_NoMod" xml:space="preserve">
-    <value>你似乎没有任何模组……</value>
-  </data>
   <data name="Upload_Success" xml:space="preserve">
-    <value>上传成功！正在打开创意工坊页面……</value>
+    <value>上传成功！</value>
   </data>
   <data name="Upload_Uploading" xml:space="preserve">
     <value>正在上传……</value>
-  </data>
-  <data name="Main_Update_Getinfo" xml:space="preserve">
-    <value>正在获取模组信息……</value>
-  </data>
-  <data name="Main_Update_WillUpdate" xml:space="preserve">
-    <value>将要更新的模组为：</value>
-  </data>
-  <data name="Main_DirectoryNotFound" xml:space="preserve">
-    <value>内容路径或/和预览图路径无效。</value>
   </data>
   <data name="ModInfo_QueryFail" xml:space="preserve">
     <value>查询失败：</value>
@@ -208,25 +135,94 @@
   <data name="ModInfo_NotCSL" xml:space="preserve">
     <value>物品似乎并非《Cities: Skylines》创意工坊物品：</value>
   </data>
-  <data name="ModInfo_NotMod" xml:space="preserve">
-    <value>物品似乎并非模组：</value>
-  </data>
   <data name="ModInfo_NotAuthor" xml:space="preserve">
     <value>物品似乎不属于你：</value>
   </data>
-  <data name="Upload_ChooseContentFolder_Cancel" xml:space="preserve">
-    <value>选择已被取消。</value>
-  </data>
-  <data name="Upload_NoDll" xml:space="preserve">
-    <value>给定的内容目录中至少须有一个dll文件。</value>
-  </data>
-  <data name="Upload_Retry" xml:space="preserve">
-    <value>重试……</value>
-  </data>
-  <data name="Main_CheckingInternet" xml:space="preserve">
-    <value>正在检查你与创意工坊的网络连接，请稍候……</value>
+  <data name="Retry" xml:space="preserve">
+    <value>重试</value>
   </data>
   <data name="Main_InitFail" xml:space="preserve">
     <value>初始化Steam API失败。</value>
+  </data>
+  <data name="Home_Welcome" xml:space="preserve">
+    <value>欢迎，{0}！</value>
+  </data>
+  <data name="Home_Create" xml:space="preserve">
+    <value>创建物品</value>
+  </data>
+  <data name="Home_Update" xml:space="preserve">
+    <value>更新物品</value>
+  </data>
+  <data name="Edit_SelectType" xml:space="preserve">
+    <value>选择物品类型</value>
+  </data>
+  <data name="Edit_Required" xml:space="preserve">
+    <value>此项目为必填项。</value>
+  </data>
+  <data name="Edit_Name" xml:space="preserve">
+    <value>名称：</value>
+  </data>
+  <data name="Edit_Description" xml:space="preserve">
+    <value>描述：</value>
+  </data>
+  <data name="Edit_Changelog" xml:space="preserve">
+    <value>更新日志：</value>
+  </data>
+  <data name="Edit_ContentFolder" xml:space="preserve">
+    <value>内容文件夹：</value>
+  </data>
+  <data name="Edit_Browse" xml:space="preserve">
+    <value>浏览……</value>
+  </data>
+  <data name="Edit_UpdatePreviewOnly" xml:space="preserve">
+    <value>仅更新预览图</value>
+  </data>
+  <data name="Edit_Upload" xml:space="preserve">
+    <value>上传</value>
+  </data>
+  <data name="Edit_Confirm" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Edit_ConfirmUpload" xml:space="preserve">
+    <value>请再次确认上传内容</value>
+  </data>
+  <data name="ModInfo_NotMod" xml:space="preserve">
+    <value>物品似乎并非模组：</value>
+  </data>
+  <data name="Select_Title" xml:space="preserve">
+    <value>选择需要更新的物品</value>
+  </data>
+  <data name="Select_SearchBox" xml:space="preserve">
+    <value>搜索创意工坊id或名称</value>
+  </data>
+  <data name="Select_NoResults" xml:space="preserve">
+    <value>未找到结果。</value>
+  </data>
+  <data name="Select_NoItems" xml:space="preserve">
+    <value>你似乎没有任何物品……</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Edit_ConfirmCancel" xml:space="preserve">
+    <value>编辑的内容将不会被保存。是否继续？</value>
+  </data>
+  <data name="Edit_PreviewImage_Tooltip" xml:space="preserve">
+    <value>点击以更换预览图</value>
+  </data>
+  <data name="Edit_CustomTags" xml:space="preserve">
+    <value>自定义标签：</value>
+  </data>
+  <data name="Edit_CustomTags_PlaceHolder" xml:space="preserve">
+    <value>按回车键以添加</value>
+  </data>
+  <data name="Upload_OpenLog" xml:space="preserve">
+    <value>打开日志文件</value>
   </data>
 </root>

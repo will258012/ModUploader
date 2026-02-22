@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,90 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Command_Error" xml:space="preserve">
-    <value>Ungültige oder fehlende Parameter.</value>
-  </data>
-  <data name="Command_Help" xml:space="preserve">
-    <value>Verfügbare Argumente:
-"-help" Diesen Teil anzeigen
-"-Update &lt;id&gt; &lt;content_path&gt;  [&lt;previewImage_path&gt; (Ignorieren dieses Elements wird das Vorschaubild nicht ändern)]" Update ein Mod
-"-newmod &lt;title&gt; &lt;content_path&gt; [&lt;previewImage_path&gt; [ &lt;previewImage_path&gt; (Ignorieren, wird Standard-Vorschaubild verwenden)]" Neue Mod erstellen</value>
-  </data>
-  <data name="Main_Message" xml:space="preserve">
-    <value>Bitte gib die Workshop-ID oder URL deiner Mod ein, um diese zu aktualisieren oder vaild Operation:
-- "mymod" zeigt Ihre Mods in einer Liste
-- "newmod" erstellt eine neue Mod
-- "exit" verlassen
-- Nur das Vorschaubild aktualisieren? "-updatePreviewOnly" nach der ID oder URL anhängen</value>
-  </data>
-  <data name="Main_CreateFail" xml:space="preserve">
-    <value>Fehler beim Erstellen der Mod:</value>
-  </data>
-  <data name="Main_InvalidInput" xml:space="preserve">
-    <value>Ungültige Eingabe. Bitte versuche es erneut.</value>
-  </data>
-  <data name="Main_MultiInstances" xml:space="preserve">
-    <value>App wird bereits ausgeführt.</value>
-  </data>
-  <data name="Main_NewMod_EnterDescription" xml:space="preserve">
-    <value>Bitte geben Sie eine Beschreibung für ihre neue Mod ein (optional):</value>
-  </data>
-  <data name="Main_NewMod_EnterTitle" xml:space="preserve">
-    <value>Bitte geben Sie einen Titel für ihre neue Mod ein (nicht optional):</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Main_CreateFail" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="Main_UpdateFail" xml:space="preserve">
     <value>Fehler beim Updaten der Mod:</value>
   </data>
-  <data name="Upload_ChooseContentFolder_Title" xml:space="preserve">
-    <value>Bitte wählen Sie den Inhaltsordner Ihrer Mod</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Newmod" xml:space="preserve">
-    <value>Sie haben die Auswahl abgebrochen. Das Standardbild wird verwendet.</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Update" xml:space="preserve">
-    <value>Sie haben die Auswahl abgebrochen. Das Bild wird nicht geändert.</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Title" xml:space="preserve">
-    <value>Bitte wählen Sie ein Vorschaubild</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Newmod" xml:space="preserve">
-    <value>Möchten sie ein Vorschaubild hochladen?</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Update" xml:space="preserve">
-    <value>Möchten Sie das Vorschaubild aktualisieren?</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_Text_NewMod" xml:space="preserve">
-    <value>Klicken Sie auf "Ja", um ein Bild auszuwählen, oder klicken Sie auf "Nein", um das Standardbild zu verwenden.</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_Text_Update" xml:space="preserve">
-    <value>Klicken Sie auf "Ja", um das Bild auszuwählen, oder klicken Sie auf "Nein" um das Bild nicht zu ändern.</value>
-  </data>
-  <data name="Upload_CreateSuccess" xml:space="preserve">
-    <value>Workshop-Element {0} wurde erfolgreich erstellt.</value>
-  </data>
-  <data name="Upload_Creating" xml:space="preserve">
-    <value>Erstelle Workshop-Element, bitte warten...</value>
-  </data>
-  <data name="Upload_GetModList_Fetching" xml:space="preserve">
-    <value>Lade deine Mod-Liste, bitte warten...</value>
-  </data>
-  <data name="Upload_GetModList_NoMod" xml:space="preserve">
-    <value>Du scheinst keine Mods zu haben...</value>
-  </data>
   <data name="Upload_Success" xml:space="preserve">
-    <value>Erfolgreich hochgeladen! Öffne die Workshop-Seite für dich...</value>
+    <value>Erfolgreich hochgeladen!</value>
   </data>
   <data name="Upload_Uploading" xml:space="preserve">
     <value>Wird hochgeladen...</value>
-  </data>
-  <data name="Main_Update_Getinfo" xml:space="preserve">
-    <value>Mod Infos abrufen...</value>
-  </data>
-  <data name="Main_Update_WillUpdate" xml:space="preserve">
-    <value>Mod wird aktualisieren:</value>
-  </data>
-  <data name="Main_DirectoryNotFound" xml:space="preserve">
-    <value>Ungültiger Inhaltspfad oder/und Vorschaubildpfad.</value>
   </data>
   <data name="ModInfo_QueryFail" xml:space="preserve">
     <value>Abfrage fehlgeschlagen:</value>
@@ -208,25 +136,25 @@
   <data name="ModInfo_NotCSL" xml:space="preserve">
     <value>Element scheint kein Cities: Skylines Workshop-Artikel zu sein:</value>
   </data>
-  <data name="ModInfo_NotMod" xml:space="preserve">
-    <value>Element scheint keine Mod zu sein:</value>
-  </data>
   <data name="ModInfo_NotAuthor" xml:space="preserve">
     <value>Elemet erscheint nicht für dich:</value>
   </data>
-  <data name="Upload_ChooseContentFolder_Cancel" xml:space="preserve">
-    <value>Du hast die Auswahl abgebrochen.</value>
-  </data>
-  <data name="Upload_NoDll" xml:space="preserve">
-    <value>Es muss mindestens eine DLL-Datei im angegebenen Inhalts-Ordner vorhanden sein.</value>
-  </data>
-  <data name="Upload_Retry" xml:space="preserve">
-    <value>Wiederhole...</value>
-  </data>
-  <data name="Main_CheckingInternet" xml:space="preserve">
-    <value>Internetverbindung zum Workshop wird überprüft, bitte warten...</value>
+  <data name="Retry" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="Main_InitFail" xml:space="preserve">
     <value>Fehler beim Initialisieren der Steam API.</value>
+  </data>
+  <data name="Edit_SelectType" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Edit_UpdatePreviewOnly" xml:space="preserve">
+    <value>Nur das Vorschaubild aktualisieren</value>
+  </data>
+  <data name="ModInfo_NotMod" xml:space="preserve">
+    <value>Element scheint keine Mod zu sein:</value>
+  </data>
+  <data name="Select_NoItems" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
 </root>

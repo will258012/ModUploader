@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,90 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Command_Error" xml:space="preserve">
-    <value>매개변수가 잘못되었거나 누락되었습니다.</value>
-  </data>
-  <data name="Command_Help" xml:space="preserve">
-    <value>Available arguments:
-"-help" Show this part
-"-update &lt;id&gt; &lt;content_path&gt;  [&lt;previewImage_path&gt; (Ignoring this item will not change the preview image)]" Update a mod
-"-newmod &lt;title&gt; &lt;content_path&gt; [&lt;previewImage_path&gt; (Ignore this will use default preview image)]" Create a new mod</value>
-  </data>
-  <data name="Main_Message" xml:space="preserve">
-    <value>Please enter your mod's workshop ID or URL to update your mod, or vaild operation:
-- "mymod" show your mods in a list
-- "newmod" create a new mod
-- "exit" exit
-- Only want to update the preview image? Attach "-updatePreviewOnly" after the ID or URL</value>
-  </data>
-  <data name="Main_CreateFail" xml:space="preserve">
-    <value>모드 생성 실패:</value>
-  </data>
-  <data name="Main_InvalidInput" xml:space="preserve">
-    <value>잘못된 입력입니다. 다시 시도하십시오.</value>
-  </data>
-  <data name="Main_MultiInstances" xml:space="preserve">
-    <value>앱이 이미 실행 중입니다.</value>
-  </data>
-  <data name="Main_NewMod_EnterDescription" xml:space="preserve">
-    <value>모드의 설명을 입력해주십시오. (선택):</value>
-  </data>
-  <data name="Main_NewMod_EnterTitle" xml:space="preserve">
-    <value>모드의 제목을 입력해주십시오. (필수):</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Main_CreateFail" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="Main_UpdateFail" xml:space="preserve">
     <value>모드 업데이트 실패:</value>
   </data>
-  <data name="Upload_ChooseContentFolder_Title" xml:space="preserve">
-    <value>모드 콘텐츠 폴더를 선택해주십시오</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Newmod" xml:space="preserve">
-    <value>선택을 취소했습니다. 기본 이미지를 사용합니다.</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Cancel_Update" xml:space="preserve">
-    <value>선택을 취소했습니다. 이미지가 변경되지 않습니다.</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_OpenFileDialog_Title" xml:space="preserve">
-    <value>미리 보기 이미지를 선택해주십시오</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Newmod" xml:space="preserve">
-    <value>미리 보기 이미지를 제공하시겠습니까?</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_InstructionText_Update" xml:space="preserve">
-    <value>미리 보기 이미지를 업데이트하시겠습니까?</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_Text_NewMod" xml:space="preserve">
-    <value>"예"를 눌러 이미지를 선택하시고, "아니오"를 눌러 건너뛴 후 기본 이미지를 사용하십시오.</value>
-  </data>
-  <data name="Upload_ChoosePreviewImageFile_TaskDialog_Text_Update" xml:space="preserve">
-    <value>"예"를 눌러 이미지를 선택하시고, "아니오"를 눌러 건너뛰십시오.</value>
-  </data>
-  <data name="Upload_CreateSuccess" xml:space="preserve">
-    <value>Workshop 아이템 {0}이(가) 성공적으로 생성되었습니다.</value>
-  </data>
-  <data name="Upload_Creating" xml:space="preserve">
-    <value>Workshop 아이템 제작 중입니다. 기다려 주십시오...</value>
-  </data>
-  <data name="Upload_GetModList_Fetching" xml:space="preserve">
-    <value>모드 목록을 가져오는 중입니다. 기다려 주십시오...</value>
-  </data>
-  <data name="Upload_GetModList_NoMod" xml:space="preserve">
-    <value>아무 모드도 없는 것 같습니다...</value>
-  </data>
   <data name="Upload_Success" xml:space="preserve">
-    <value>성공적으로 업로드되었습니다! Workshop 페이지를 엽니다...</value>
+    <value>성공적으로 업로드되었습니다!</value>
   </data>
   <data name="Upload_Uploading" xml:space="preserve">
     <value>업로드 중...</value>
-  </data>
-  <data name="Main_Update_Getinfo" xml:space="preserve">
-    <value>Getting mod info...</value>
-  </data>
-  <data name="Main_Update_WillUpdate" xml:space="preserve">
-    <value>업데이트될 모드:</value>
-  </data>
-  <data name="Main_DirectoryNotFound" xml:space="preserve">
-    <value>콘텐츠 또는 미리 보기 이미지의 경로가 잘못되었습니다.</value>
   </data>
   <data name="ModInfo_QueryFail" xml:space="preserve">
     <value>쿼리 실패:</value>
@@ -208,25 +136,19 @@
   <data name="ModInfo_NotCSL" xml:space="preserve">
     <value>Cities: Skylines Workshop 항목이 아님:</value>
   </data>
-  <data name="ModInfo_NotMod" xml:space="preserve">
-    <value>모드가 아님:</value>
-  </data>
   <data name="ModInfo_NotAuthor" xml:space="preserve">
     <value>Item does not appear to yours:</value>
   </data>
-  <data name="Upload_ChooseContentFolder_Cancel" xml:space="preserve">
-    <value>선택을 취소했습니다.</value>
-  </data>
-  <data name="Upload_NoDll" xml:space="preserve">
-    <value>지정한 콘텐츠 폴더에는 최소한 하나의 DLL 파일이 존재해야 합니다.</value>
-  </data>
-  <data name="Upload_Retry" xml:space="preserve">
-    <value>다시 시도 중...</value>
-  </data>
-  <data name="Main_CheckingInternet" xml:space="preserve">
-    <value>Workshop 인터넷 연결을 확인 중입니다. 기다려 주십시오...</value>
+  <data name="Retry" xml:space="preserve">
+    <value>다시 시도</value>
   </data>
   <data name="Main_InitFail" xml:space="preserve">
     <value>Steam API를 초기화하는 데 실패했습니다.</value>
+  </data>
+  <data name="Edit_UpdatePreviewOnly" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ModInfo_NotMod" xml:space="preserve">
+    <value>모드가 아님:</value>
   </data>
 </root>
