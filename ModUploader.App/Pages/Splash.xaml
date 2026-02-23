@@ -11,7 +11,7 @@
 
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="30">
-            <Image MaxHeight="128" MaxWidth="128" Source="/Assets/icon_256x256.png" Stretch="Uniform"/>
+            <Image MaxHeight="128" MaxWidth="128" Source="ms-appx:///Assets/icon_256x256.png" Stretch="Uniform"/>
             <ProgressRing x:Name="ProgressRing" IsActive="True" />
             <TextBlock x:Name="ErrorTextBlock" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" Foreground="Red" Visibility="Collapsed"/>
             <Button x:Name="BtnRetry" Click="BtnRetry_Click" HorizontalAlignment="Center" Visibility="Collapsed">

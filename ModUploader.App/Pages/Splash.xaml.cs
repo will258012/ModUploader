@@ -15,6 +15,7 @@ public sealed partial class Splash : Page
     {
         base.OnNavigatedTo(e);
         onSplash = e.Parameter as Func<Task>;
+        await Task.Delay(500);
         RunAction();
     }
     private async void RunAction()

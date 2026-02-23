@@ -56,7 +56,7 @@ namespace ModUploader
         /// <returns>An <see cref="Editor"/> instance configured for update.</returns>
         private Editor CreateItemEditor(ItemInfo item)
         {
-            if (item!.IsNewItem || item.Item.HasValue)
+            if (!item.IsNewItem || item.Item.HasValue)
                 throw new InvalidOperationException("The item already exists.");
 
             var editor = Editor.NewCommunityFile

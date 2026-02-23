@@ -57,7 +57,7 @@ public sealed partial class ItemUpload : Page
                 ResultIcon.Text = "\uE73E";
                 ResultMessage.Text = Upload_Success;
                 BtnRetry.Visibility = BtnOpenLog.Visibility = Visibility.Collapsed;
-                Process.Start("explorer.exe", $"steam://url/CommunityFilePage/{mod.PublishedFileId}");
+                Process.Start("explorer.exe", $"steam://url/CommunityFilePage/{result.FileId.Value}");
             }
             else
             {

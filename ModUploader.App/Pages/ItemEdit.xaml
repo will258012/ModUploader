@@ -234,10 +234,16 @@
             Margin="0,20,0,0">
             <Button.Flyout>
                 <Flyout>
-                    <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <Flyout.FlyoutPresenterStyle>
+                        <Style TargetType="FlyoutPresenter">
+                            <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled"/>
+                            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                        </Style>
+                    </Flyout.FlyoutPresenterStyle>
+                    <StackPanel>
                         <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
                            Text="{x:Bind res:Resources.Edit_ConfirmUpload, Mode=OneWay}"
-                           Margin="0,0,0,12" />
+                           Margin="0,0,0,12"/>
                         <Button Click="BtnUpload_Click" Content="{x:Bind res:Resources.Edit_Confirm, Mode=OneWay}" />
                     </StackPanel>
                 </Flyout>

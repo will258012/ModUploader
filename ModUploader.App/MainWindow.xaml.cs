@@ -3,69 +3,59 @@ using Microsoft.UI.Xaml.Navigation;
 using ModUploader.Pages;
 using System.Reflection;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
-namespace ModUploader
+namespace ModUploader;
+public sealed partial class MainWindow : Window
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
+
+        InitializeComponent();
+        ExtendsContentIntoTitleBar = true;
+        SetTitleBar(AppTitleBar);
+
+        var assembly = Assembly.GetExecutingAssembly();
+        var version = assembly.GetName().Version?.ToString();
+
+        var copyrightAttr = assembly
+            .GetCustomAttribute<AssemblyCopyrightAttribute>()?
+            .Copyright ?? "";
+
+        WatermarkText.Text = $"{copyrightAttr} {version}";
+
+        MainFrame.Navigate(typeof(Splash), (Func<Task>)OnSplash, new SuppressNavigationTransitionInfo());
+    }
+    internal void BackButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (MainFrame.CanGoBack)
+            MainFrame.GoBack();
+    }
+    private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+    {
+        var currentPageType = e.SourcePageType;
+
+        if (currentPageType == typeof(ItemSelect) ||
+            currentPageType == typeof(ItemEdit))
         {
-
-            InitializeComponent();
-            ExtendsContentIntoTitleBar = true;
-            SetTitleBar(AppTitleBar);
-
-            var assembly = Assembly.GetExecutingAssembly();
-            var version = assembly.GetName().Version?.ToString();
-
-            var copyrightAttr = assembly
-                .GetCustomAttribute<AssemblyCopyrightAttribute>()?
-                .Copyright ?? "";
-
-            WatermarkText.Text = $"{copyrightAttr} {version}";
-
-            MainFrame.Navigate(typeof(Splash), (Func<Task>)OnSplash, new SuppressNavigationTransitionInfo());
+            BackButton.Visibility = Visibility.Visible;
         }
-        internal void BackButton_Click(object sender, RoutedEventArgs e)
+        else
         {
-            if (MainFrame.CanGoBack)
-                MainFrame.GoBack();
+            BackButton.Visibility = Visibility.Collapsed;
         }
-        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+    }
+    private async Task OnSplash()
+    {
+        if (!Utils.Ping("https://steamcommunity.com"))
+            throw new HttpRequestException(Resources.Resource_EResult.k_EResultConnectFailed);
+
+        if (!SteamClient.IsValid)
+            SteamClient.Init(UploadHelper.CSL_APPID);
+
+        App.LoadAssembly();
+        App.ApplyHarmonyPatches();
+        MainFrame.DispatcherQueue.TryEnqueue(() =>
         {
-            var currentPageType = e.SourcePageType;
-
-            if (currentPageType == typeof(ItemSelect) ||
-                currentPageType == typeof(ItemEdit))
-            {
-                BackButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                BackButton.Visibility = Visibility.Collapsed;
-            }
-        }
-        private async Task OnSplash()
-        {
-            await Task.Delay(100);
-
-            if (!Utils.Ping("https://steamcommunity.com"))
-                throw new HttpRequestException(Resources.Resource_EResult.k_EResultConnectFailed);
-
-            if (!SteamClient.IsValid)
-                SteamClient.Init(UploadHelper.CSL_APPID);
-
-            App.LoadAssembly();
-            App.ApplyHarmonyPatches();
-            MainFrame.DispatcherQueue.TryEnqueue(() =>
-            {
-                MainFrame.Navigate(typeof(Home), null, new DrillInNavigationTransitionInfo());
-            });
-        }
+            MainFrame.Navigate(typeof(Home), null, new DrillInNavigationTransitionInfo());
+        });
     }
 }
