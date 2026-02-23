@@ -5,7 +5,7 @@ namespace ModUploader.Pages;
 
 public sealed partial class Splash : Page
 {
-    private Func<Task> action;
+    private Func<Task> onSplash;
     public Splash()
     {
         App.Logger.Info("Splash entered");
@@ -14,7 +14,7 @@ public sealed partial class Splash : Page
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
-        action = e.Parameter as Func<Task> ?? throw new ArgumentNullException();
+        onSplash = e.Parameter as Func<Task>;
         RunAction();
     }
     private async void RunAction()
@@ -24,18 +24,18 @@ public sealed partial class Splash : Page
             ProgressRing.Visibility = Visibility.Visible;
             ErrorTextBlock.Visibility = BtnRetry.Visibility = Visibility.Collapsed;
 
-            await action.Invoke();
+            await onSplash.Invoke();
         }
         catch (Exception e)
         {
             App.Logger.Error(e);
             ProgressRing.Visibility = Visibility.Collapsed;
-            ErrorTextBlock.Visibility = BtnRetry.Visibility =  Visibility.Visible;
+            ErrorTextBlock.Visibility = BtnRetry.Visibility = Visibility.Visible;
             ErrorTextBlock.Text = Main_InitFail + e.Message;
         }
     }
 
-    private void BtnRetry_Click(object sender, RoutedEventArgs e)
+    private async void BtnRetry_Click(object sender, RoutedEventArgs e)
     {
         RunAction();
     }

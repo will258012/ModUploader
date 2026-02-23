@@ -133,12 +133,6 @@
   <data name="ModInfo_QueryFail" xml:space="preserve">
     <value>쿼리 실패:</value>
   </data>
-  <data name="ModInfo_NotCSL" xml:space="preserve">
-    <value>Cities: Skylines Workshop 항목이 아님:</value>
-  </data>
-  <data name="ModInfo_NotAuthor" xml:space="preserve">
-    <value>Item does not appear to yours:</value>
-  </data>
   <data name="Retry" xml:space="preserve">
     <value>다시 시도</value>
   </data>
@@ -147,8 +141,5 @@
   </data>
   <data name="Edit_UpdatePreviewOnly" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
-  </data>
-  <data name="ModInfo_NotMod" xml:space="preserve">
-    <value>모드가 아님:</value>
   </data>
 </root>

@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>
             
             <ScrollViewer>
-            <StackPanel Spacing="10" MaxWidth="250">
+            <StackPanel x:Name="LeftZone" Spacing="10" MaxWidth="250">
                     <Border x:Name="PreviewImageBorder" Width="250"
                             Height="250"
                             Background="Black"
@@ -165,8 +165,8 @@
                 </Expander>
             </StackPanel>
           </ScrollViewer>
-            
-            <ScrollViewer Grid.Column="2">
+
+            <ScrollViewer x:Name="RightZone" Grid.Column="2">
                 <StackPanel Spacing="10">
                     <StackPanel>
                         <TextBlock Text="{x:Bind res:Resources.Edit_Name, Mode=OneWay}" FontWeight="SemiBold"/>

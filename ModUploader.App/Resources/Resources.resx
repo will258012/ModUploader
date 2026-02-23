@@ -132,12 +132,6 @@
   <data name="ModInfo_QueryFail" xml:space="preserve">
     <value>Query Failed:</value>
   </data>
-  <data name="ModInfo_NotCSL" xml:space="preserve">
-    <value>Item does not appear to be a Cities: Skylines workshop item:</value>
-  </data>
-  <data name="ModInfo_NotAuthor" xml:space="preserve">
-    <value>Item does not appear to yours:</value>
-  </data>
   <data name="Retry" xml:space="preserve">
     <value>Retry</value>
   </data>
@@ -185,9 +179,6 @@
   </data>
   <data name="Edit_ConfirmUpload" xml:space="preserve">
     <value>Please confirm that you have reviewed all details before uploading.</value>
-  </data>
-  <data name="ModInfo_NotMod" xml:space="preserve">
-    <value>Item does not appear to be a mod:</value>
   </data>
   <data name="Select_Title" xml:space="preserve">
     <value>Select the items to be updated</value>

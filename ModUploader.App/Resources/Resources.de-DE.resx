@@ -133,12 +133,6 @@
   <data name="ModInfo_QueryFail" xml:space="preserve">
     <value>Abfrage fehlgeschlagen:</value>
   </data>
-  <data name="ModInfo_NotCSL" xml:space="preserve">
-    <value>Element scheint kein Cities: Skylines Workshop-Artikel zu sein:</value>
-  </data>
-  <data name="ModInfo_NotAuthor" xml:space="preserve">
-    <value>Elemet erscheint nicht für dich:</value>
-  </data>
   <data name="Retry" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -150,9 +144,6 @@
   </data>
   <data name="Edit_UpdatePreviewOnly" xml:space="preserve">
     <value>Nur das Vorschaubild aktualisieren</value>
-  </data>
-  <data name="ModInfo_NotMod" xml:space="preserve">
-    <value>Element scheint keine Mod zu sein:</value>
   </data>
   <data name="Select_NoItems" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />

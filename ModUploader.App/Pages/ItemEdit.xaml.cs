@@ -22,23 +22,22 @@ public sealed partial class ItemEdit : Page
     {
         App.Logger.Info($"ItemEdit entered");
         InitializeComponent();
-
     }
-
+    #region Page overrides
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
 
-        if (e.Parameter is ItemInfo mod)
+        if (e.Parameter is ItemInfo item)
         {
-            editingItem = mod;
-            TxtName.Text = mod.Name;
+            editingItem = item;
+            TxtName.Text = item.Name;
             TxtDescription.Visibility = Patches.QueryLanguagePatch.IsDescriptionEditionDisabled ? Visibility.Collapsed : Visibility.Visible;
-            TxtDescription.Text = Patches.QueryLanguagePatch.IsDescriptionEditionDisabled ? "" : mod.Description;
+            TxtDescription.Text = Patches.QueryLanguagePatch.IsDescriptionEditionDisabled ? "" : item.Description;
             UpdatePreviewOnlyCheckbox.Visibility = Visibility.Visible;
             TypeChoiceExpander.IsExpanded = false;
             PreviewImage.Source = new BitmapImage(new Uri(editingItem.PreviewImageUrl));
-            ParseTagsIntoTypeChoice(mod.Tags);
+            ParseTagsIntoTypeChoice(item.Tags);
         }
         else
         {
@@ -49,115 +48,71 @@ public sealed partial class ItemEdit : Page
         _hasConfirmedNavigation = false;
     }
 
-
-    private void ParseTagsIntoTypeChoice(string[] tags)
+    protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
     {
-        if (tags == null || tags.Length == 0)
+        base.OnNavigatingFrom(e);
+        if (_hasConfirmedNavigation)
+        {
+            App.appWindow.Closing -= AppWindow_Closing;
             return;
+        }
 
-        GeneralRadioButtons.SelectedItem = null;
-        MiscRadioButtons.SelectedItem = null;
-        AssetsListView.SelectedItems.Clear();
-
-        foreach (var tag in tags)
+        e.Cancel = true;
+        var dialog = new ContentDialog
         {
-            var trimmed = tag.Trim().ToLower();
+            XamlRoot = XamlRoot,
+            Title = Edit_ConfirmCancel,
+            PrimaryButtonText = Edit_Confirm,
+            CloseButtonText = Cancel,
+            DefaultButton = ContentDialogButton.None
+        };
 
-            foreach (RadioButton item in GeneralRadioButtons.Items)
-            {
-                if (item.Content?.ToString()?.Trim().ToLower() == trimmed)
-                {
-                    GeneralRadioButtons.SelectedItem = item;
-                    goto NextTag;
-                }
-            }
+        var result = await dialog.ShowAsync();
 
-            foreach (RadioButton item in MiscRadioButtons.Items)
-            {
-                if (item.Content?.ToString()?.Trim().ToLower() == trimmed)
-                {
-                    MiscRadioButtons.SelectedItem = item;
-                    goto NextTag;
-                }
-            }
-
-            foreach (ListViewItem item in AssetsListView.Items)
-            {
-                if (item.Content?.ToString()?.Trim().ToLower() == trimmed)
-                {
-                    AssetsListView.SelectedItems.Add(item);
-                    goto NextTag;
-                }
-            }
-
-            CustomTags.Add(trimmed);
-
-        NextTag:
-            continue;
+        if (result == ContentDialogResult.Primary)
+        {
+            _hasConfirmedNavigation = true;
+            e.Cancel = false;
+            Frame.GoBack();
         }
     }
-    private bool ValidateForm()
+
+
+    private async void AppWindow_Closing(AppWindow sender, AppWindowClosingEventArgs args)
     {
-        TxtName_TextChanged(null, null);
-        TxtContentFolder_TextChanged(null, null);
+        args.Cancel = true;
+        try
+        {
+            var dialog = new ContentDialog
+            {
+                XamlRoot = XamlRoot,
+                Title = Edit_ConfirmCancel,
+                PrimaryButtonText = Edit_Confirm,
+                CloseButtonText = Cancel,
+                DefaultButton = ContentDialogButton.None
+            };
 
-        if (GeneralRadioButtons.SelectedItem == null && MiscRadioButtons.SelectedItem == null && AssetsListView.SelectedItems.Count == 0)
-        {
-            TypeChoiceExpanderError.Visibility = Visibility.Visible;
-            AttachRedBrush(TypeChoiceExpander);
+            var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                args.Cancel = false;
+                Application.Current.Exit();
+            }
         }
-        else
+        catch
         {
-            TypeChoiceExpanderError.Visibility = Visibility.Collapsed;
-            RemoveRedBrush(TypeChoiceExpander);
+            Application.Current.Exit();
         }
-
-        if (editingItem?.UpdatePreviewOnly == true && TxtPreviewPath == null)
-        {
-            AttachRedBrush(PreviewImageBorder);
-            return false;
-        }
-        else
-        {
-            RemoveRedBrush(PreviewImageBorder);
-        }
-
-        return TxtNameError.Visibility == Visibility.Collapsed &&
-            TxtContentFolderError.Visibility == Visibility.Collapsed &&
-            TypeChoiceExpanderError.Visibility == Visibility.Collapsed;
     }
 
-    private void TxtName_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        if (string.IsNullOrWhiteSpace(TxtName.Text))
-        {
-            TxtNameError.Visibility = Visibility.Visible;
-            AttachRedBrush(TxtName);
-        }
-        else
-        {
-            TxtNameError.Visibility = Visibility.Collapsed;
-            RemoveRedBrush(TxtName);
-        }
-    }
-    private void TxtContentFolder_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        if (string.IsNullOrWhiteSpace(TxtContentFolder.Text) && UpdatePreviewOnlyCheckbox.IsChecked == false)
-        {
-            TxtContentFolderError.Visibility = Visibility.Visible;
-            AttachRedBrush(TxtContentFolder);
-        }
-        else
-        {
-            TxtContentFolderError.Visibility = Visibility.Collapsed;
-            RemoveRedBrush(TxtContentFolder);
-        }
-    }
+    #endregion
+
+    #region Left Zone
 
     private async void PreviewImage_Tapped(object sender, TappedRoutedEventArgs e)
     {
         var picker = new FileOpenPicker();
-        var hwnd = WindowNative.GetWindowHandle(App.window);
+        var hwnd = WindowNative.GetWindowHandle(App.MainWindow);
         InitializeWithWindow.Initialize(picker, hwnd);
 
         picker.FileTypeFilter.Add(".png");
@@ -172,45 +127,6 @@ public sealed partial class ItemEdit : Page
 
             RemoveRedBrush(PreviewImageBorder);
         }
-    }
-    private async void BtnSelectFolder_Click(object sender, RoutedEventArgs e)
-    {
-        var picker = new FolderPicker();
-        var hwnd = WindowNative.GetWindowHandle(App.window);
-        InitializeWithWindow.Initialize(picker, hwnd);
-
-        picker.FileTypeFilter.Add("*");
-
-        StorageFolder folder = await picker.PickSingleFolderAsync();
-        if (folder != null)
-        {
-            TxtContentFolder.Text = folder.Path;
-        }
-    }
-
-    private void UpdatePreviewOnlyCheckbox_Checked(object sender, RoutedEventArgs e)
-    {
-        ValidateForm();
-        editingItem?.UpdatePreviewOnly = true;
-
-        if (TxtPreviewPath == null)
-        {
-            AttachRedBrush(PreviewImageBorder);
-        }
-        else
-        {
-            RemoveRedBrush(PreviewImageBorder);
-        }
-
-        TxtName.IsEnabled = TxtChangeLog.IsEnabled = TxtContentFolder.IsEnabled = TxtDescription.IsEnabled = TypeChoiceExpander.IsEnabled = false;
-    }
-
-    private void UpdatePreviewOnlyCheckbox_Unchecked(object sender, RoutedEventArgs e)
-    {
-        ValidateForm();
-        RemoveRedBrush(PreviewImageBorder);
-        editingItem?.UpdatePreviewOnly = false;
-        TxtName.IsEnabled = TxtChangeLog.IsEnabled = TxtContentFolder.IsEnabled = TxtDescription.IsEnabled = TypeChoiceExpander.IsEnabled = true;
     }
 
     private void GeneralRadioButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -266,6 +182,52 @@ public sealed partial class ItemEdit : Page
 
         args.Item = text;
     }
+    private void ParseTagsIntoTypeChoice(string[] tags)
+    {
+        if (tags == null || tags.Length == 0)
+            return;
+
+        GeneralRadioButtons.SelectedItem = null;
+        MiscRadioButtons.SelectedItem = null;
+        AssetsListView.SelectedItems.Clear();
+
+        foreach (var tag in tags)
+        {
+            var trimmed = tag.Trim().ToLower();
+
+            foreach (RadioButton item in GeneralRadioButtons.Items)
+            {
+                if (item.Content?.ToString()?.Trim().ToLower() == trimmed)
+                {
+                    GeneralRadioButtons.SelectedItem = item;
+                    goto NextTag;
+                }
+            }
+
+            foreach (RadioButton item in MiscRadioButtons.Items)
+            {
+                if (item.Content?.ToString()?.Trim().ToLower() == trimmed)
+                {
+                    MiscRadioButtons.SelectedItem = item;
+                    goto NextTag;
+                }
+            }
+
+            foreach (ListViewItem item in AssetsListView.Items)
+            {
+                if (item.Content?.ToString()?.Trim().ToLower() == trimmed)
+                {
+                    AssetsListView.SelectedItems.Add(item);
+                    goto NextTag;
+                }
+            }
+
+            CustomTags.Add(trimmed);
+
+        NextTag:
+            continue;
+        }
+    }
     private string[] GetSelectedTags()
     {
         var general = (GeneralRadioButtons.SelectedItem as RadioButton)?.Content?.ToString();
@@ -302,6 +264,133 @@ public sealed partial class ItemEdit : Page
         return tags;
     }
 
+    #endregion
+
+    #region Right Zone
+    private void TxtName_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(TxtName.Text))
+        {
+            TxtNameError.Visibility = Visibility.Visible;
+            AttachRedBrush(TxtName);
+        }
+        else
+        {
+            TxtNameError.Visibility = Visibility.Collapsed;
+            RemoveRedBrush(TxtName);
+        }
+    }
+    private void TxtContentFolder_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(TxtContentFolder.Text) && UpdatePreviewOnlyCheckbox.IsChecked == false)
+        {
+            TxtContentFolderError.Visibility = Visibility.Visible;
+            AttachRedBrush(TxtContentFolder);
+        }
+        else
+        {
+            TxtContentFolderError.Visibility = Visibility.Collapsed;
+            RemoveRedBrush(TxtContentFolder);
+        }
+    }
+
+    private async void BtnSelectFolder_Click(object sender, RoutedEventArgs e)
+    {
+        var picker = new FolderPicker();
+        var hwnd = WindowNative.GetWindowHandle(App.MainWindow);
+        InitializeWithWindow.Initialize(picker, hwnd);
+
+        picker.FileTypeFilter.Add("*");
+
+        StorageFolder folder = await picker.PickSingleFolderAsync();
+        if (folder != null)
+        {
+            TxtContentFolder.Text = folder.Path;
+        }
+    }
+
+    private void UpdatePreviewOnlyCheckbox_Checked(object sender, RoutedEventArgs e)
+    {
+        ValidateForm();
+        editingItem?.UpdatePreviewOnly = true;
+
+        if (TxtPreviewPath == null)
+        {
+            AttachRedBrush(PreviewImageBorder);
+        }
+        else
+        {
+            RemoveRedBrush(PreviewImageBorder);
+        }
+
+        TxtName.IsEnabled = TxtChangeLog.IsEnabled = TxtContentFolder.IsEnabled = TxtDescription.IsEnabled = TypeChoiceExpander.IsEnabled = false;
+    }
+
+    private void UpdatePreviewOnlyCheckbox_Unchecked(object sender, RoutedEventArgs e)
+    {
+        ValidateForm();
+        RemoveRedBrush(PreviewImageBorder);
+        editingItem?.UpdatePreviewOnly = false;
+        TxtName.IsEnabled = TxtChangeLog.IsEnabled = TxtContentFolder.IsEnabled = TxtDescription.IsEnabled = TypeChoiceExpander.IsEnabled = true;
+    }
+    #endregion
+
+    #region Validation
+    private bool ValidateForm()
+    {
+        TxtName_TextChanged(null, null);
+        TxtContentFolder_TextChanged(null, null);
+
+        if (GeneralRadioButtons.SelectedItem == null && MiscRadioButtons.SelectedItem == null && AssetsListView.SelectedItems.Count == 0)
+        {
+            TypeChoiceExpanderError.Visibility = Visibility.Visible;
+            AttachRedBrush(TypeChoiceExpander);
+        }
+        else
+        {
+            TypeChoiceExpanderError.Visibility = Visibility.Collapsed;
+            RemoveRedBrush(TypeChoiceExpander);
+        }
+
+        if (editingItem?.UpdatePreviewOnly == true && TxtPreviewPath == null)
+        {
+            AttachRedBrush(PreviewImageBorder);
+            return false;
+        }
+        else
+        {
+            RemoveRedBrush(PreviewImageBorder);
+        }
+
+        return TxtNameError.Visibility == Visibility.Collapsed &&
+            TxtContentFolderError.Visibility == Visibility.Collapsed &&
+            TypeChoiceExpanderError.Visibility == Visibility.Collapsed;
+    }
+
+    private void AttachRedBrush<T>(T element) where T : Control
+    {
+
+        element.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Red);
+        element.BorderThickness = new Thickness(2);
+    }
+
+    private void AttachRedBrush(Border border)
+    {
+        border.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Red);
+        border.BorderThickness = new Thickness(2);
+    }
+    private void RemoveRedBrush<T>(T element) where T : Control
+    {
+        element.ClearValue(BorderBrushProperty);
+        element.ClearValue(BorderThicknessProperty);
+    }
+    private void RemoveRedBrush(Border element)
+    {
+        element.BorderThickness = new Thickness(0);
+        element.ClearValue(BorderBrushProperty);
+        element.ClearValue(BorderThicknessProperty);
+        element.Background = new SolidColorBrush(Microsoft.UI.Colors.Black);
+    }
     private void BtnUpload_Click(object sender, RoutedEventArgs e)
     {
         BtnUpload.Flyout?.Hide();
@@ -329,84 +418,5 @@ public sealed partial class ItemEdit : Page
 
         Frame.Navigate(typeof(ItemUpload), editingItem, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
     }
-    protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
-    {
-        base.OnNavigatingFrom(e);
-        if (_hasConfirmedNavigation)
-        {
-            App.appWindow.Closing -= AppWindow_Closing;
-            return;
-        }
-
-        e.Cancel = true;
-        var dialog = new ContentDialog
-        {
-            XamlRoot = XamlRoot,
-            Title = Edit_ConfirmCancel,
-            PrimaryButtonText = Edit_Confirm,
-            CloseButtonText = Cancel,
-            DefaultButton = ContentDialogButton.None
-        };
-
-        var result = await dialog.ShowAsync();
-
-        if (result == ContentDialogResult.Primary)
-        {
-            _hasConfirmedNavigation = true;
-            e.Cancel = false;
-            Frame.GoBack();
-        }
-    }
-
-    private async void AppWindow_Closing(AppWindow sender, AppWindowClosingEventArgs args)
-    {
-        args.Cancel = true;
-        try
-        {
-            var dialog = new ContentDialog
-            {
-                XamlRoot = XamlRoot,
-                Title = Edit_ConfirmCancel,
-                PrimaryButtonText = Edit_Confirm,
-                CloseButtonText = Cancel,
-                DefaultButton = ContentDialogButton.None
-            };
-
-            var result = await dialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                args.Cancel = false;
-                Application.Current.Exit();
-            }
-        }
-        catch
-        {
-            Application.Current.Exit();
-        }
-    }
-
-    private void AttachRedBrush<T>(T element) where T : Control
-    {
-
-        element.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Red);
-        element.BorderThickness = new Thickness(2);
-    }
-
-    private void AttachRedBrush(Border border)
-    {
-        border.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Red);
-        border.BorderThickness = new Thickness(2);
-    }
-    private void RemoveRedBrush<T>(T element) where T : Control
-    {
-        element.ClearValue(BorderBrushProperty);
-        element.ClearValue(BorderThicknessProperty);
-    }
-    private void RemoveRedBrush(Border element)
-    {
-        element.BorderThickness = new Thickness(0);
-        element.ClearValue(BorderBrushProperty);
-        element.ClearValue(BorderThicknessProperty);
-        element.Background = new SolidColorBrush(Microsoft.UI.Colors.Black);
-    }
+    #endregion
 }

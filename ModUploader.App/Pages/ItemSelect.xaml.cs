@@ -33,7 +33,7 @@ public sealed partial class ItemSelect : Page
             LoadingRing.Visibility = SearchBox.Visibility = Visibility.Visible;
             ListViewText.Visibility = BtnRetry.Visibility = Visibility.Collapsed;
             App.Logger.Info($"Loading mod list...");
-            var items = await UploadHelper.GetListAsync();
+            var items = await UploadHelper.GetItemListAsync();
 
             foreach (var item in items)
             {

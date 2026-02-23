@@ -1,9 +1,6 @@
 ﻿using HarmonyLib;
 using Steamworks.Ugc;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 namespace ModUploader.Patches;
 
 [HarmonyPatch]
@@ -35,6 +32,7 @@ internal static class QueryLanguagePatch
 
                 setLangMethod.Invoke(steamUgcInstance, new object[] { handle, language });
             }
+            IsDescriptionEditionDisabled = false;
         }
         catch (Exception e)
         {

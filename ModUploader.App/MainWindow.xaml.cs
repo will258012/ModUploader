@@ -20,7 +20,6 @@ namespace ModUploader
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
 
-
             var assembly = Assembly.GetExecutingAssembly();
             var version = assembly.GetName().Version?.ToString();
 
@@ -30,23 +29,7 @@ namespace ModUploader
 
             WatermarkText.Text = $"{copyrightAttr} {version}";
 
-            MainFrame.Navigate(typeof(Splash), async () =>
-            {
-                await Task.Delay(100);
-
-                if (!Utils.Ping("https://steamcommunity.com"))
-                    throw new HttpRequestException(Resources.Resource_EResult.k_EResultConnectFailed);
-
-                if (!SteamClient.IsValid)
-                    SteamClient.Init(UploadHelper.CSL_APPID);
-
-                App.LoadAssembly();
-                App.ApplyHarmonyPatches();
-                MainFrame.DispatcherQueue.TryEnqueue(() =>
-                {
-                    MainFrame.Navigate(typeof(Home), null, new DrillInNavigationTransitionInfo());
-                });
-            });
+            MainFrame.Navigate(typeof(Splash), (Func<Task>)OnSplash, new SuppressNavigationTransitionInfo());
         }
         internal void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -67,6 +50,22 @@ namespace ModUploader
                 BackButton.Visibility = Visibility.Collapsed;
             }
         }
+        private async Task OnSplash()
+        {
+            await Task.Delay(100);
 
+            if (!Utils.Ping("https://steamcommunity.com"))
+                throw new HttpRequestException(Resources.Resource_EResult.k_EResultConnectFailed);
+
+            if (!SteamClient.IsValid)
+                SteamClient.Init(UploadHelper.CSL_APPID);
+
+            App.LoadAssembly();
+            App.ApplyHarmonyPatches();
+            MainFrame.DispatcherQueue.TryEnqueue(() =>
+            {
+                MainFrame.Navigate(typeof(Home), null, new DrillInNavigationTransitionInfo());
+            });
+        }
     }
 }

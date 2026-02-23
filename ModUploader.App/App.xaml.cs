@@ -20,9 +20,10 @@ namespace ModUploader
         public static Assembly AssemblyCSharp { get; private set; }
         public static Assembly ColossalManaged { get; private set; }
 
-        internal static Window window;
+        public static MainWindow MainWindow { get; private set; }
         internal static AppWindow appWindow;
-        internal static bool hasPatched;
+        private static bool hasPatched;
+        private static Mutex mutex;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -33,7 +34,7 @@ namespace ModUploader
         {
             try
             {
-                _ = new Mutex(true, "Global\\ModUploader", out var createdNew);
+                mutex = new Mutex(true, "Global\\ModUploader", out var createdNew);
                 if (!createdNew)
                 {
                     Utils.ActivateExistingWindow();
@@ -59,9 +60,9 @@ namespace ModUploader
         {
             try
             {
-                window = new MainWindow();
-                window.Activate();
-                appWindow = AppWindow.GetFromWindowId(Win32Interop.GetWindowIdFromWindow(WindowNative.GetWindowHandle(window)));
+                MainWindow = new MainWindow();
+                MainWindow.Activate();
+                appWindow = AppWindow.GetFromWindowId(Win32Interop.GetWindowIdFromWindow(WindowNative.GetWindowHandle(MainWindow)));
             }
             catch (Exception e)
             {

@@ -268,33 +268,6 @@ namespace ModUploader.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Item does not appear to yours: 的本地化字符串。
-        /// </summary>
-        public static string ModInfo_NotAuthor {
-            get {
-                return ResourceManager.GetString("ModInfo_NotAuthor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Item does not appear to be a Cities: Skylines workshop item: 的本地化字符串。
-        /// </summary>
-        public static string ModInfo_NotCSL {
-            get {
-                return ResourceManager.GetString("ModInfo_NotCSL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Item does not appear to be a mod: 的本地化字符串。
-        /// </summary>
-        public static string ModInfo_NotMod {
-            get {
-                return ResourceManager.GetString("ModInfo_NotMod", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Query Failed: 的本地化字符串。
         /// </summary>
         public static string ModInfo_QueryFail {
