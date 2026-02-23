@@ -23,7 +23,7 @@
             
             <ScrollViewer>
             <StackPanel Spacing="10" MaxWidth="250">
-                    <Border Width="250"
+                    <Border x:Name="PreviewImageBorder" Width="250"
                             Height="250"
                             Background="Black"
                             HorizontalAlignment="Left"

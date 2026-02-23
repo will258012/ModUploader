@@ -25,10 +25,10 @@ public sealed partial class ItemEdit : Page
 
     }
 
-    protected override void OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
+    protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
-        PreviewImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/PreviewImage.png"));
+
         if (e.Parameter is ItemInfo mod)
         {
             editingItem = mod;
@@ -37,9 +37,14 @@ public sealed partial class ItemEdit : Page
             TxtDescription.Text = Patches.QueryLanguagePatch.IsDescriptionEditionDisabled ? "" : mod.Description;
             UpdatePreviewOnlyCheckbox.Visibility = Visibility.Visible;
             TypeChoiceExpander.IsExpanded = false;
-            ParseTagsIntoTypeChoice(mod.Tags);
             PreviewImage.Source = new BitmapImage(new Uri(editingItem.PreviewImageUrl));
+            ParseTagsIntoTypeChoice(mod.Tags);
         }
+        else
+        {
+            PreviewImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/PreviewImage.png"));
+        }
+
         App.appWindow.Closing += AppWindow_Closing;
         _hasConfirmedNavigation = false;
     }
@@ -99,33 +104,40 @@ public sealed partial class ItemEdit : Page
         if (GeneralRadioButtons.SelectedItem == null && MiscRadioButtons.SelectedItem == null && AssetsListView.SelectedItems.Count == 0)
         {
             TypeChoiceExpanderError.Visibility = Visibility.Visible;
-            TypeChoiceExpander.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Red);
-            TypeChoiceExpander.BorderThickness = new Thickness(2);
-            return false;
+            AttachRedBrush(TypeChoiceExpander);
         }
         else
         {
             TypeChoiceExpanderError.Visibility = Visibility.Collapsed;
-            TypeChoiceExpander.ClearValue(BorderBrushProperty);
-            TypeChoiceExpander.ClearValue(BorderThicknessProperty);
+            RemoveRedBrush(TypeChoiceExpander);
+        }
+
+        if (editingItem?.UpdatePreviewOnly == true && TxtPreviewPath == null)
+        {
+            AttachRedBrush(PreviewImageBorder);
+            return false;
+        }
+        else
+        {
+            RemoveRedBrush(PreviewImageBorder);
         }
 
         return TxtNameError.Visibility == Visibility.Collapsed &&
-               (UpdatePreviewOnlyCheckbox.IsChecked == true || TxtContentFolderError.Visibility == Visibility.Collapsed);
+            TxtContentFolderError.Visibility == Visibility.Collapsed &&
+            TypeChoiceExpanderError.Visibility == Visibility.Collapsed;
     }
+
     private void TxtName_TextChanged(object sender, TextChangedEventArgs e)
     {
         if (string.IsNullOrWhiteSpace(TxtName.Text))
         {
             TxtNameError.Visibility = Visibility.Visible;
-            TxtName.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Red);
-            TxtName.BorderThickness = new Thickness(2);
+            AttachRedBrush(TxtName);
         }
         else
         {
             TxtNameError.Visibility = Visibility.Collapsed;
-            TxtName.ClearValue(BorderBrushProperty);
-            TxtName.ClearValue(BorderThicknessProperty);
+            RemoveRedBrush(TxtName);
         }
     }
     private void TxtContentFolder_TextChanged(object sender, TextChangedEventArgs e)
@@ -133,14 +145,12 @@ public sealed partial class ItemEdit : Page
         if (string.IsNullOrWhiteSpace(TxtContentFolder.Text) && UpdatePreviewOnlyCheckbox.IsChecked == false)
         {
             TxtContentFolderError.Visibility = Visibility.Visible;
-            TxtContentFolder.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Red);
-            TxtContentFolder.BorderThickness = new Thickness(2);
+            AttachRedBrush(TxtContentFolder);
         }
         else
         {
             TxtContentFolderError.Visibility = Visibility.Collapsed;
-            TxtContentFolder.ClearValue(BorderBrushProperty);
-            TxtContentFolder.ClearValue(BorderThicknessProperty);
+            RemoveRedBrush(TxtContentFolder);
         }
     }
 
@@ -159,6 +169,8 @@ public sealed partial class ItemEdit : Page
 
             PreviewImage.Source =
                 new BitmapImage(new Uri(file.Path));
+
+            RemoveRedBrush(PreviewImageBorder);
         }
     }
     private async void BtnSelectFolder_Click(object sender, RoutedEventArgs e)
@@ -180,12 +192,23 @@ public sealed partial class ItemEdit : Page
     {
         ValidateForm();
         editingItem?.UpdatePreviewOnly = true;
+
+        if (TxtPreviewPath == null)
+        {
+            AttachRedBrush(PreviewImageBorder);
+        }
+        else
+        {
+            RemoveRedBrush(PreviewImageBorder);
+        }
+
         TxtName.IsEnabled = TxtChangeLog.IsEnabled = TxtContentFolder.IsEnabled = TxtDescription.IsEnabled = TypeChoiceExpander.IsEnabled = false;
     }
 
     private void UpdatePreviewOnlyCheckbox_Unchecked(object sender, RoutedEventArgs e)
     {
         ValidateForm();
+        RemoveRedBrush(PreviewImageBorder);
         editingItem?.UpdatePreviewOnly = false;
         TxtName.IsEnabled = TxtChangeLog.IsEnabled = TxtContentFolder.IsEnabled = TxtDescription.IsEnabled = TypeChoiceExpander.IsEnabled = true;
     }
@@ -281,6 +304,7 @@ public sealed partial class ItemEdit : Page
 
     private void BtnUpload_Click(object sender, RoutedEventArgs e)
     {
+        BtnUpload.Flyout?.Hide();
         if (!ValidateForm()) return;
 
         if (editingItem == null)
@@ -361,4 +385,28 @@ public sealed partial class ItemEdit : Page
         }
     }
 
+    private void AttachRedBrush<T>(T element) where T : Control
+    {
+
+        element.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Red);
+        element.BorderThickness = new Thickness(2);
+    }
+
+    private void AttachRedBrush(Border border)
+    {
+        border.BorderBrush = new SolidColorBrush(Microsoft.UI.Colors.Red);
+        border.BorderThickness = new Thickness(2);
+    }
+    private void RemoveRedBrush<T>(T element) where T : Control
+    {
+        element.ClearValue(BorderBrushProperty);
+        element.ClearValue(BorderThicknessProperty);
+    }
+    private void RemoveRedBrush(Border element)
+    {
+        element.BorderThickness = new Thickness(0);
+        element.ClearValue(BorderBrushProperty);
+        element.ClearValue(BorderThicknessProperty);
+        element.Background = new SolidColorBrush(Microsoft.UI.Colors.Black);
+    }
 }
