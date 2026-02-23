@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
     <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="30">
             <Image MaxHeight="128" MaxWidth="128" Source="/Assets/icon_256x256.png" Stretch="Uniform"/>
             <ProgressRing x:Name="ProgressRing" IsActive="True" />
             <TextBlock x:Name="ErrorTextBlock" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" Foreground="Red" Visibility="Collapsed"/>
