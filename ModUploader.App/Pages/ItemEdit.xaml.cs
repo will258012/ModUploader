@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
@@ -109,7 +110,7 @@ public sealed partial class ItemEdit : Page
 
     #region Left Zone
 
-    private async void PreviewImage_Tapped(object sender, TappedRoutedEventArgs e)
+    private async void PreviewImageBorder_Tapped(object sender, TappedRoutedEventArgs e)
     {
         var picker = new FileOpenPicker();
         var hwnd = WindowNative.GetWindowHandle(App.MainWindow);
@@ -122,13 +123,48 @@ public sealed partial class ItemEdit : Page
         {
             TxtPreviewPath = file.Path;
 
-            PreviewImage.Source =
-                new BitmapImage(new Uri(file.Path));
+            using var stream = await file.OpenAsync(FileAccessMode.Read);
+            var bitmap = new BitmapImage();
+            await bitmap.SetSourceAsync(stream);
+            PreviewImage.Source = bitmap;
 
             RemoveRedBrush(PreviewImageBorder);
         }
     }
 
+    private void PreviewImageBorder_DragEnter(object sender, DragEventArgs e)
+    {
+        if (e.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            e.AcceptedOperation = DataPackageOperation.Copy;
+        }
+        else
+        {
+            e.AcceptedOperation = DataPackageOperation.None;
+        }
+    }
+
+    private async void PreviewImageBorder_Drop(object sender, DragEventArgs e)
+    {
+        if (e.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            var items = await e.DataView.GetStorageItemsAsync();
+            if (items.Count > 0 && items[0] is StorageFile file)
+            {
+                string ext = file.FileType.ToLower();
+                if (ext == ".png")
+                {
+                    using var stream = await file.OpenAsync(FileAccessMode.Read);
+                    var bitmap = new BitmapImage();
+                    await bitmap.SetSourceAsync(stream);
+                    PreviewImage.Source = bitmap;
+                    RemoveRedBrush(PreviewImageBorder);
+                    return;
+                }
+            }
+        }
+        AttachRedBrush(PreviewImageBorder);
+    }
     private void GeneralRadioButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (GeneralRadioButtons.SelectedItem != null)
@@ -174,7 +210,7 @@ public sealed partial class ItemEdit : Page
         string text = args.TokenText?.Trim() ?? string.Empty;
         text = text.Replace(" ", "");
 
-        if (string.IsNullOrWhiteSpace(text) || CustomTags.Contains(text))
+        if (string.IsNullOrWhiteSpace(text) || CustomTags.Contains(text, StringComparer.CurrentCultureIgnoreCase))
         {
             args.Cancel = true;
             return;
@@ -227,6 +263,17 @@ public sealed partial class ItemEdit : Page
         NextTag:
             continue;
         }
+
+        if (GeneralRadioButtons.SelectedItem is RadioButton { Content: "Mod" })
+        {
+            for (int i = CustomTags.Count - 1; i >= 0; i--)
+            {
+                if (UploadHelper.CompatibleRegex.IsMatch(CustomTags[i]))
+                    CustomTags.RemoveAt(i);
+            }
+
+            CustomTags.Add(UploadHelper.Instance.CompatibleTag);
+        }
     }
     private string[] GetSelectedTags()
     {
@@ -255,10 +302,9 @@ public sealed partial class ItemEdit : Page
         }
         else tags = Array.Empty<string>();
 
-        tags = tags.Union(
-            CustomTags
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .Where(t => !string.IsNullOrWhiteSpace(t)))
+        tags = tags.Union(CustomTags)
+            .Distinct(StringComparer.CurrentCultureIgnoreCase)
+            .Where(t => !string.IsNullOrWhiteSpace(t))
             .ToArray();
 
         return tags;
@@ -282,7 +328,7 @@ public sealed partial class ItemEdit : Page
     }
     private void TxtContentFolder_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(TxtContentFolder.Text) && UpdatePreviewOnlyCheckbox.IsChecked == false)
+        if ((string.IsNullOrWhiteSpace(TxtContentFolder.Text) || !Directory.Exists(TxtContentFolder.Text)) && UpdatePreviewOnlyCheckbox.IsChecked == false)
         {
             TxtContentFolderError.Visibility = Visibility.Visible;
             AttachRedBrush(TxtContentFolder);
@@ -294,6 +340,34 @@ public sealed partial class ItemEdit : Page
         }
     }
 
+    private void TxtContentFolder_DragEnter(object sender, DragEventArgs e)
+    {
+        if (e.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            e.AcceptedOperation = DataPackageOperation.Link;
+        }
+        else
+        {
+            e.AcceptedOperation = DataPackageOperation.None;
+        }
+    }
+
+    private async void TxtContentFolder_Drop(object sender, DragEventArgs e)
+    {
+        if (e.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            var items = await e.DataView.GetStorageItemsAsync();
+            if (items.Count > 0 && items[0] is StorageFolder folder)
+            {
+                TxtContentFolder.Text = folder.Path;
+                RemoveRedBrush(TxtContentFolder);
+                TxtContentFolderError.Visibility = Visibility.Collapsed;
+                return;
+            }
+        }
+        AttachRedBrush(TxtContentFolder);
+        TxtContentFolderError.Visibility = Visibility.Collapsed;
+    }
     private async void BtnSelectFolder_Click(object sender, RoutedEventArgs e)
     {
         var picker = new FolderPicker();
@@ -418,5 +492,7 @@ public sealed partial class ItemEdit : Page
 
         Frame.Navigate(typeof(ItemUpload), editingItem, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
     }
+
     #endregion
+
 }

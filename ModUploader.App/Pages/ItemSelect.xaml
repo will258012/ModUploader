@@ -56,11 +56,14 @@
                             
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                 <TextBlock Text="{x:Bind Name}"
-                           FontSize="18"
-                           FontWeight="Bold"/>
+                                   FontSize="18"
+                                   FontWeight="Bold"/>
+                                <TextBlock Text="{x:Bind TagsText}"
+                                   FontSize="14"
+                                   Foreground="Gray"/>
                                 <TextBlock Text="{x:Bind PublishedFileId}"
-                           FontSize="14"
-                           Foreground="Gray"/>
+                                   FontSize="14"
+                                   Foreground="Gray"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>

@@ -2,11 +2,14 @@
   <Configurations>
     <Platform Name="x64" />
   </Configurations>
+  <Folder Name="/Solution Folder/">
+    <File Path="Directory.Build.props" />
+  </Folder>
   <Project Path="ModUploader.App/ModUploader.App.csproj">
     <Platform Project="x64" />
     <Deploy />
   </Project>
-    <Project Path="ModUploader.Mod/ModUploader.Mod.csproj">
-      <Platform Project="x64" />
-    </Project>
+  <Project Path="ModUploader.Mod/ModUploader.Mod.csproj">
+    <Platform Project="x64" />
+  </Project>
 </Solution>

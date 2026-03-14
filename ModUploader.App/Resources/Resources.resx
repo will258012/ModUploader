@@ -184,7 +184,7 @@
     <value>Select the items to be updated</value>
   </data>
   <data name="Select_SearchBox" xml:space="preserve">
-    <value>Search for Workshop ID or name</value>
+    <value>Search by Workshop ID, Name, or Tags</value>
   </data>
   <data name="Select_NoResults" xml:space="preserve">
     <value>No results found.</value>

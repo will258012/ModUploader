@@ -304,7 +304,7 @@ namespace ModUploader.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Search for Workshop ID or name 的本地化字符串。
+        ///   查找类似 Search by Workshop ID, Name, or Tags 的本地化字符串。
         /// </summary>
         public static string Select_SearchBox {
             get {

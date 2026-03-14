@@ -6,8 +6,8 @@ namespace ModUploader.Pages;
 
 public sealed partial class ItemSelect : Page
 {
-    private ObservableCollection<ItemInfo> AllItems { get; } = new();
-    public ObservableCollection<ItemInfo> FilteredItems { get; } = new();
+    private ObservableCollection<ItemInfo> AllItems { get; } = [];
+    public ObservableCollection<ItemInfo> FilteredItems { get; } = [];
 
     public ItemSelect()
     {
@@ -30,8 +30,9 @@ public sealed partial class ItemSelect : Page
         FilteredItems.Clear();
         try
         {
-            LoadingRing.Visibility = SearchBox.Visibility = Visibility.Visible;
-            ListViewText.Visibility = BtnRetry.Visibility = Visibility.Collapsed;
+            LoadingRing.Visibility = Visibility.Visible;
+            ListViewText.Visibility = SearchBox.Visibility = BtnRetry.Visibility = Visibility.Collapsed;
+
             App.Logger.Info($"Loading mod list...");
             var items = await UploadHelper.GetItemListAsync();
 
@@ -45,7 +46,10 @@ public sealed partial class ItemSelect : Page
             {
                 ListViewText.Visibility = BtnRetry.Visibility = Visibility.Visible;
                 ListViewText.Text = Select_NoItems;
-                SearchBox.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                SearchBox.Visibility = Visibility.Visible;
             }
         }
         catch (Exception e)
@@ -79,8 +83,9 @@ public sealed partial class ItemSelect : Page
         var filtered = string.IsNullOrWhiteSpace(filter)
             ? AllItems
             : AllItems.Where(m =>
-                m.Name.ToLower().Contains(filter) ||
-                m.PublishedFileId.ToString().Contains(filter));
+                m.Name.Contains(filter, StringComparison.CurrentCultureIgnoreCase) ||
+                m.PublishedFileId.ToString().Contains(filter) ||
+                m.TagsText.Contains(filter, StringComparison.CurrentCultureIgnoreCase));
 
         foreach (var mod in filtered)
             FilteredItems.Add(mod);

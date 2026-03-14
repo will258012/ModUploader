@@ -8,6 +8,7 @@ namespace ModUploader
         public string Name { get; set; }
         public string? Description { get; set; }
         public string[] Tags { get; set; }
+        public string TagsText => string.Join(", ", Tags);
         public ulong PublishedFileId { get; set; }
         public bool UpdatePreviewOnly { get; set; }
         public string ContentFolderPath { get; set; }

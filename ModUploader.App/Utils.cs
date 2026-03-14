@@ -15,18 +15,11 @@ namespace ModUploader
     }
     public static class Utils
     {
-        public static bool Ping(string url)
+        public static async Task<bool> Ping(string url)
         {
-            try
-            {
-                using var client = new HttpClient();
-                var response = client.GetAsync(url).Result;
-                return response.IsSuccessStatusCode;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            using var client = new HttpClient();
+            var response = await client.GetAsync(url);
+            return response.IsSuccessStatusCode;
         }
         private const int SW_RESTORE = 9;
 

@@ -4,6 +4,7 @@ using ModUploader.Pages;
 using System.Reflection;
 
 namespace ModUploader;
+
 public sealed partial class MainWindow : Window
 {
     public MainWindow()
@@ -45,7 +46,8 @@ public sealed partial class MainWindow : Window
     }
     private async Task OnSplash()
     {
-        if (!Utils.Ping("https://steamcommunity.com"))
+        bool result = await Utils.Ping("https://steamcommunity.com");
+        if (!result)
             throw new HttpRequestException(Resources.Resource_EResult.k_EResultConnectFailed);
 
         if (!SteamClient.IsValid)

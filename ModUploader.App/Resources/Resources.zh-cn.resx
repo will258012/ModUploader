@@ -184,7 +184,7 @@
     <value>选择需要更新的物品</value>
   </data>
   <data name="Select_SearchBox" xml:space="preserve">
-    <value>搜索创意工坊id或名称</value>
+    <value>搜索创意工坊ID、名称或标签</value>
   </data>
   <data name="Select_NoResults" xml:space="preserve">
     <value>未找到结果。</value>

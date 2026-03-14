@@ -28,11 +28,14 @@
                             Background="Black"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            IsTapEnabled="True"
+                            Tapped="PreviewImageBorder_Tapped"
+                            AllowDrop="True"
+                            DragEnter="PreviewImageBorder_DragEnter"
+                            Drop="PreviewImageBorder_Drop"
                             ToolTipService.ToolTip="{x:Bind res:Resources.Edit_PreviewImage_Tooltip, Mode=OneWay}">
                         <Image x:Name="PreviewImage"
-                               Stretch="Uniform"
-                               IsTapEnabled="True"
-                               Tapped="PreviewImage_Tapped"/>
+                               Stretch="Uniform"/>
                     </Border>
                     <Expander x:Name="TypeChoiceExpander" IsExpanded="True" HorizontalAlignment="Stretch">
                         <Expander.Header>
@@ -167,8 +170,17 @@
           </ScrollViewer>
 
             <ScrollViewer x:Name="RightZone" Grid.Column="2">
-                <StackPanel Spacing="10">
-                    <StackPanel>
+                <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Margin="0,0,0,10" Spacing="10">
                         <TextBlock Text="{x:Bind res:Resources.Edit_Name, Mode=OneWay}" FontWeight="SemiBold"/>
                         <TextBox x:Name="TxtName"
                          TextChanged="TxtName_TextChanged"
@@ -181,23 +193,27 @@
                                 Text="{x:Bind res:Resources.Edit_Required, Mode=OneWay}"/>
                     </StackPanel>
 
-                    <TextBlock x:Name="TxtBlockDescription" Text="{x:Bind res:Resources.Edit_Description, Mode=OneWay}" FontWeight="SemiBold"/>
+
+                    <TextBlock x:Name="TxtBlockDescription" Grid.Row="1" Margin="0,0,0,10" Text="{x:Bind res:Resources.Edit_Description, Mode=OneWay}" FontWeight="SemiBold"/>
                     <TextBox x:Name="TxtDescription"
+                         Grid.Row="2"
+                         Margin="0,0,0,10"
                          AcceptsReturn="True"
-                         TextWrapping="Wrap"
+                         TextWrapping="NoWrap"
                          MinHeight="120"
-                         MaxHeight="250"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                          HorizontalAlignment="Stretch"/>
 
-                    <TextBlock Text="{x:Bind res:Resources.Edit_Changelog, Mode=OneWay}" FontWeight="SemiBold"/>
+                    <TextBlock Grid.Row="3" Margin="0,0,0,10" Text="{x:Bind res:Resources.Edit_Changelog, Mode=OneWay}" FontWeight="SemiBold"/>
                     <TextBox x:Name="TxtChangeLog"
+                         Grid.Row="4"
+                         Margin="0,0,0,10"
                          AcceptsReturn="True"
-                         TextWrapping="Wrap"
+                         TextWrapping="NoWrap"
                          MinHeight="100"
                          HorizontalAlignment="Stretch"/>
 
-                    <StackPanel Margin="0,10,0,0">
+                    <StackPanel Grid.Row="5" Margin="0,0,0,10">
                         <TextBlock Text="{x:Bind res:Resources.Edit_ContentFolder, Mode=OneWay}" FontWeight="SemiBold"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -205,7 +221,12 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBox x:Name="TxtContentFolder" IsReadOnly="True" TextChanged="TxtContentFolder_TextChanged"/>
+                            <TextBox x:Name="TxtContentFolder" 
+                                     Margin="0,10,0,10"
+                                     TextChanged="TxtContentFolder_TextChanged"
+                                     AllowDrop="True"
+                                     DragEnter="TxtContentFolder_DragEnter"
+                                     Drop="TxtContentFolder_Drop"/>
                             <Button Grid.Column="1" Content="{x:Bind res:Resources.Edit_Browse, Mode=OneWay}" Click="BtnSelectFolder_Click"/>
                         </Grid>
                         <TextBlock x:Name="TxtContentFolderError"
@@ -214,16 +235,17 @@
                                        Visibility="Collapsed"
                                        Text="{x:Bind res:Resources.Edit_Required, Mode=OneWay}"/>
                     </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
 
-                    <CheckBox x:Name="UpdatePreviewOnlyCheckbox"
+        <CheckBox x:Name="UpdatePreviewOnlyCheckbox"
+                          Grid.Row="1"
+                          HorizontalAlignment="Left"
                           Visibility="Collapsed"
                           Content="{x:Bind res:Resources.Edit_UpdatePreviewOnly, Mode=OneWay}"
                           Checked="UpdatePreviewOnlyCheckbox_Checked"
                           Unchecked="UpdatePreviewOnlyCheckbox_Unchecked"/>
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
-
 
         <Button 
             x:Name="BtnUpload"
